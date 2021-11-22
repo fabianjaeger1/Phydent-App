@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'logindialog.ui'
+# Form implementation generated from reading ui file 'login.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -103,7 +103,10 @@ class Ui_Dialog(object):
         font = QtGui.QFont()
         font.setFamily("Source Sans Pro")
         font.setPointSize(12)
+        font.setBold(False)
+        font.setWeight(50)
         self.loginbutton.setFont(font)
+        self.loginbutton.setStyleSheet("color: rgb(0, 94, 135);")
         self.loginbutton.setObjectName("loginbutton")
         self.horizontalLayout.addWidget(self.loginbutton)
         self.exitbutton = QtWidgets.QPushButton(Dialog)
@@ -112,7 +115,10 @@ class Ui_Dialog(object):
         font = QtGui.QFont()
         font.setFamily("Source Sans Pro")
         font.setPointSize(12)
+        font.setBold(False)
+        font.setWeight(50)
         self.exitbutton.setFont(font)
+        self.exitbutton.setStyleSheet("color: rgb(0, 94, 135);")
         self.exitbutton.setObjectName("exitbutton")
         self.horizontalLayout.addWidget(self.exitbutton)
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -123,9 +129,9 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Login"))
-        self.label.setText(_translate("Dialog", "OPUS Login Daten"))
-        self.passlabel.setText(_translate("Dialog", "Passwort:"))
-        self.userlabel.setText(_translate("Dialog", "Benutzername:"))
+        self.label.setText(_translate("Dialog", "<html><head/><body><p><span style=\" color:#005e87;\">OPUS Login Daten</span></p></body></html>"))
+        self.passlabel.setText(_translate("Dialog", "<html><head/><body><p><span style=\" color:#698a93;\">Passwort:</span></p></body></html>"))
+        self.userlabel.setText(_translate("Dialog", "<html><head/><body><p><span style=\" color:#698a93;\">Benutzername:</span></p></body></html>"))
         self.loginbutton.setText(_translate("Dialog", "Login"))
         self.exitbutton.setText(_translate("Dialog", "Exit"))
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'measurementwindow.ui'
+# Form implementation generated from reading ui file 'mainwindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -23,6 +23,7 @@ class Ui_Messungen(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("PhydentLogo.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Messungen.setWindowIcon(icon)
+        Messungen.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(Messungen)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -46,6 +47,7 @@ class Ui_Messungen(object):
         font.setWeight(75)
         self.backgroundbutton.setFont(font)
         self.backgroundbutton.setAutoFillBackground(False)
+        self.backgroundbutton.setStyleSheet("color: rgb(0, 94, 135);")
         self.backgroundbutton.setObjectName("backgroundbutton")
         self.horizontalLayout_2.addWidget(self.backgroundbutton)
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
@@ -55,6 +57,7 @@ class Ui_Messungen(object):
         font.setBold(False)
         font.setWeight(50)
         self.label_2.setFont(font)
+        self.label_2.setStyleSheet("color: rgb(105, 138, 147);")
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.horizontalLayout_2.addWidget(self.label_2)
@@ -187,6 +190,7 @@ class Ui_Messungen(object):
         font.setBold(True)
         font.setWeight(75)
         self.startmeasurementbutton.setFont(font)
+        self.startmeasurementbutton.setStyleSheet("color: rgb(0, 94, 135);")
         self.startmeasurementbutton.setObjectName("startmeasurementbutton")
         self.verticalLayout.addWidget(self.startmeasurementbutton, 0, QtCore.Qt.AlignBottom)
         Messungen.setCentralWidget(self.centralwidget)
@@ -233,12 +237,12 @@ class Ui_Messungen(object):
         Messungen.setWindowTitle(_translate("Messungen", "Phydent"))
         self.backgroundbutton.setText(_translate("Messungen", "Hintergrund messen"))
         self.label_2.setText(_translate("Messungen", "Letze Hintergrund Messung: 12.10.2021 09:31"))
-        self.label_3.setText(_translate("Messungen", "Produktinformation"))
-        self.productlabel3.setText(_translate("Messungen", "Charge"))
-        self.productlabel1.setText(_translate("Messungen", "Produktname"))
-        self.productlabel4.setText(_translate("Messungen", "Ablaufdatum"))
-        self.productlabel2.setText(_translate("Messungen", "Produktnumber"))
-        self.productlabel5.setText(_translate("Messungen", "Gebinde"))
+        self.label_3.setText(_translate("Messungen", "<html><head/><body><p><span style=\" color:#005e87;\">Produktinformation</span></p></body></html>"))
+        self.productlabel3.setText(_translate("Messungen", "<html><head/><body><p><span style=\" color:#698a93;\">Charge</span></p></body></html>"))
+        self.productlabel1.setText(_translate("Messungen", "<html><head/><body><p><span style=\" color:#698a93;\">Produktname</span></p></body></html>"))
+        self.productlabel4.setText(_translate("Messungen", "<html><head/><body><p><span style=\" color:#698a93;\">Ablaufdatum</span></p></body></html>"))
+        self.productlabel2.setText(_translate("Messungen", "<html><head/><body><p><span style=\" color:#698a93;\">Produktnumber</span></p></body></html>"))
+        self.productlabel5.setText(_translate("Messungen", "<html><head/><body><p><span style=\" color:#698a93;\">Gebinde</span></p></body></html>"))
         self.startmeasurementbutton.setText(_translate("Messungen", "Messung starten"))
         self.menuEinstellungen.setTitle(_translate("Messungen", "Einstellungen"))
         self.toolBar.setWindowTitle(_translate("Messungen", "toolBar"))
