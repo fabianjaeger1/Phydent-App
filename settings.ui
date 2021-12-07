@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>864</width>
-    <height>703</height>
+    <width>888</width>
+    <height>739</height>
    </rect>
   </property>
   <property name="font">
@@ -26,53 +26,148 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="label_3">
-      <property name="font">
-       <font>
-        <family>Source Sans Pro SemiBold</family>
-        <pointsize>18</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Phydent Einstellungen</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QVBoxLayout" name="verticalLayout_4">
       <property name="leftMargin">
        <number>30</number>
+      </property>
+      <property name="topMargin">
+       <number>20</number>
       </property>
       <property name="rightMargin">
        <number>30</number>
       </property>
-      <property name="bottomMargin">
-       <number>30</number>
-      </property>
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="label_3">
         <property name="maximumSize">
          <size>
-          <width>220</width>
-          <height>16777215</height>
+          <width>16777215</width>
+          <height>60</height>
          </size>
         </property>
         <property name="font">
          <font>
-          <pointsize>14</pointsize>
+          <family>Source Sans Pro SemiBold</family>
+          <pointsize>18</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="text">
-         <string>Neuronales Netz</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt; color:#005e87;&quot;&gt;Einstellungen&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="comboBox"/>
+       <spacer name="verticalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>10</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="maximumSize">
+           <size>
+            <width>1660000</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#698a93;&quot;&gt;Neuronales Netz&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBox">
+          <property name="minimumSize">
+           <size>
+            <width>550</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>550</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>28</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>100</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Source Sans Pro</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(0, 94, 135);</string>
+          </property>
+          <property name="text">
+           <string>Auswählen</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
+    </item>
+    <item>
+     <spacer name="verticalSpacer_4">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
     </item>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -84,6 +179,12 @@
       </property>
       <item>
        <widget class="QLabel" name="label_4">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -99,7 +200,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Datenspeicherung</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Datenspeicherung&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -134,32 +235,44 @@
         <item row="0" column="0">
          <widget class="QLabel" name="label_5">
           <property name="text">
-           <string>Pfad Messdaten</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Pfad Messdaten&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_6">
           <property name="text">
-           <string>Pfad Logdatei</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Pfad Logdatei&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="2">
-         <widget class="QPushButton" name="pushButton">
+        <item row="1" column="2">
+         <widget class="QPushButton" name="pushButton_2">
           <property name="minimumSize">
            <size>
             <width>100</width>
             <height>0</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(0, 94, 135);</string>
+          </property>
           <property name="text">
            <string>Auswählen</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="2">
-         <widget class="QPushButton" name="pushButton_2">
+        <item row="0" column="2">
+         <widget class="QPushButton" name="pushButton_5">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(0, 94, 135);</string>
+          </property>
           <property name="text">
            <string>Auswählen</string>
           </property>
@@ -170,7 +283,7 @@
      </layout>
     </item>
     <item>
-     <spacer name="verticalSpacer">
+     <spacer name="verticalSpacer_2">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
@@ -180,7 +293,7 @@
       <property name="sizeHint" stdset="0">
        <size>
         <width>20</width>
-        <height>30</height>
+        <height>20</height>
        </size>
       </property>
      </spacer>
@@ -207,7 +320,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Produkt Informationen</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Produkt Informationen&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -243,6 +356,9 @@
         </item>
         <item row="1" column="0">
          <widget class="QCheckBox" name="checkBox_2">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(105, 138, 147);</string>
+          </property>
           <property name="text">
            <string>Feld 2</string>
           </property>
@@ -260,6 +376,9 @@
         </item>
         <item row="0" column="0">
          <widget class="QCheckBox" name="checkBox">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(105, 138, 147);</string>
+          </property>
           <property name="text">
            <string>Feld 1</string>
           </property>
@@ -277,6 +396,9 @@
         </item>
         <item row="2" column="0">
          <widget class="QCheckBox" name="checkBox_3">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(105, 138, 147);</string>
+          </property>
           <property name="text">
            <string>Feld 3</string>
           </property>
@@ -284,6 +406,9 @@
         </item>
         <item row="4" column="0">
          <widget class="QCheckBox" name="checkBox_5">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(105, 138, 147);</string>
+          </property>
           <property name="text">
            <string>Feld 5</string>
           </property>
@@ -300,6 +425,9 @@
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
+          <property name="text">
+           <string/>
+          </property>
           <property name="readOnly">
            <bool>false</bool>
           </property>
@@ -307,6 +435,9 @@
         </item>
         <item row="3" column="0">
          <widget class="QCheckBox" name="checkBox_4">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(105, 138, 147);</string>
+          </property>
           <property name="text">
            <string>Feld 4</string>
           </property>
@@ -326,6 +457,64 @@
       </item>
      </layout>
     </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>30</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="minimumSize">
+         <size>
+          <width>140</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>140</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 94, 135);</string>
+        </property>
+        <property name="text">
+         <string>Speichern</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_4">
+        <property name="maximumSize">
+         <size>
+          <width>140</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 94, 135);</string>
+        </property>
+        <property name="text">
+         <string>Abbrechen</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -341,7 +530,6 @@
   <tabstop>checkBox_3</tabstop>
   <tabstop>checkBox_4</tabstop>
   <tabstop>checkBox_5</tabstop>
-  <tabstop>comboBox</tabstop>
  </tabstops>
  <resources/>
  <connections/>
