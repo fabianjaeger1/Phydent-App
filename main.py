@@ -16,12 +16,40 @@ from mainwindowUI import Ui_Messungen
 import measurementUI
 import loginUI
 import mainwindowUI
+import settingsUI
+import aboutUI 
 
+
+
+class about(QMainWindow, aboutUI.Ui_MainWindow):
+    def __init__(self, parent = None):
+        super(about, self).__init__(parent)
+        self.setupUi(self)
+
+
+class settings(QMainWindow, settingsUI.Ui_Einstellungen):
+    def __init__(self, parent = None):
+        super(settings, self).__init__(parent)
+        self.setupUi(self)
 
 class measurement(QMainWindow, measurementUI.Ui_MainWindow):
+    # productlabel1var = "Test"
+    # productlabel2var = "Test2"
+    # productlabel3var = "Test3"
+    # productlabel4var = ""
+
     def __init__(self, parent=None):
         super(measurement, self).__init__(parent)
         self.setupUi(self)
+        # self.productlabel1edit.setText(self.productlabel1var)  
+        # self.productlabel2edit.setText(self.productlabel2var)
+        # self.productlabel3edit.setText(self.productlabel3var)
+        # self.productlabel4edit.setText(self.productlabel4var)
+
+        
+       
+    def go_back(self):
+        
         #self.loginbutton.clicked.connect(self.login)
         #self.popups = []
 
@@ -42,17 +70,112 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
     def __init__(self, parent=None):
         super(mainwindow, self).__init__(parent)
         self.setupUi(self)
+
+        #self.measurementwindow = measurement()
+        self.settingswindow = settings()
+        self.aboutwindow = about()
+
         self.startmeasurementbutton.clicked.connect(self.measurementstart)
+        #self.actionEinstellungen.triggered.connect(self.open_settings)
+
         self.startmeasurementbutton_2.clicked.connect(self.exitapp)
+
+        #self.startmeasurementbutton.clicked.connect(self.toggle_measurementwindow)
+        self.actionEinstellungen.triggered.connect(self.toggle_settingswindow)
+        # self.actionAbout.triggered.connect(self.open_about)
+        self.actionAbout.triggered.connect(self.toggle_about)
+        # self.actionEinstellungen.triggered.connect(self.)
+
         self.popups = []
+    
+    def toggle_about(self, checked):
+        if self.aboutwindow.isVisible():
+            self.aboutwindow.hide()
+        else:
+            self.aboutwindow.show()
+
+    def toggle_settingswindow(self, checked):
+        if self.settingswindow.isVisible():
+            self.settingswindow.hide()
+        else:
+            self.settingswindow.show()
+
+    def toggle_measurementwindow(self, checked):
+        if self.measurementwindow.isVisible():
+            self.measurementwindow.hide()
+        else:
+            self.measurementwindow.show()
 
     def measurementstart(self):
-        popwindow = measurement()
-        popwindow.show()
-        self.popups.append(popwindow)
+        productlabel1 = self.productlabel1edit.text()
+        productlabel2 = self.productlabel2edit.text()
+        productlabel3 = self.productlabel3edit.text()
+        productlabel4 = self.productlabel4edit.text()
+
+        # Instantiate measurement class 
+        self.measurementwindow = measurement()
+        
+        self.measurementwindow.productlabel1edit.setText(productlabel1)
+        self.measurementwindow.productlabel2edit.setText(productlabel2)
+        self.measurementwindow.productlabel3edit.setText(productlabel3)
+        self.measurementwindow.productlabel4edit.setText(productlabel4)
+
+        self.productlabel1edit.setReadOnly(True)
+        self.productlabel2edit.setReadOnly(True)
+        self.productlabel3edit.setReadOnly(True)
+        self.productlabel4edit.setReadOnly(True)
+        
+        #labels = [productlabel1edit, productlabel2edit, productlabel3edit, productlabel4edit]
+    
+    
+        # self.productlabel1edit.setStyleSheet("QLineEdit"
+        #                                     "{"
+        #                                     "background : lightgray;"
+        #                                     "}")
+        # measurementwindow.productlabel1edit = self.productlabel1
+        # measurementwindow.productlabel2edit = self.productlabel2
+        # measurementwindow.productlabel3edit = self.productlabel3
+        # measurementwindow.productlabel4edit = self.productlabel4
+
+        # measurementwindow.productlabel4edit = "Test"
+        
+        self.measurementwindow.show()
+        self.popups.append(self.measurementwindow)
+        print(self.popups)
     
     def exitapp(self):
-        sys.exit()
+        if self.measurementwindow.isVisible():
+            # dlg = QDialog(self)
+            # dlg.setWindowTitle("Test")
+            # dlg.label = QLabel
+            # dlg.exec()
+            dlg = QMessageBox(self)
+            dlg.setWindowTitle("Test")
+            dlg.setText("Eine Messung ist momentan am Laufen, wollen Sie die Anwendung wirklich schlissen")
+            dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+            #dlg.addButton("test")
+            dlg.button
+            dlg.setIcon(QMessageBox.Information)
+            button = dlg.exec()
+
+            if button == QMessageBox.Yes:
+                print("Close Application")
+                sys.exit()
+            else:
+                print("Close Dialog")
+                dlg.close()
+        
+            # sys.exit()
+    
+    def open_settings(self):
+        popwindow = settings()
+        popwindow.show()
+        self.popups.append(popwindow)
+
+    def open_about(self):
+        popwindow = about()
+        popwindow.show()
+        self.popups.append(about)
 
 
 # class BookPopoutWindow(QtWidgets.QMainWindow, bookPopout.BookPopout):
