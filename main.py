@@ -48,7 +48,7 @@ class measurement(QMainWindow, measurementUI.Ui_MainWindow):
 
         
        
-    def go_back(self):
+    #def go_back(self):
         
         #self.loginbutton.clicked.connect(self.login)
         #self.popups = []
@@ -111,6 +111,7 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         productlabel2 = self.productlabel2edit.text()
         productlabel3 = self.productlabel3edit.text()
         productlabel4 = self.productlabel4edit.text()
+        productlabel5 = self.productlabel5edit.text()
 
         # Instantiate measurement class 
         self.measurementwindow = measurement()
@@ -119,19 +120,22 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         self.measurementwindow.productlabel2edit.setText(productlabel2)
         self.measurementwindow.productlabel3edit.setText(productlabel3)
         self.measurementwindow.productlabel4edit.setText(productlabel4)
+        self.measurementwindow.productlabel5edit.setText(productlabel5)
 
-        self.productlabel1edit.setReadOnly(True)
-        self.productlabel2edit.setReadOnly(True)
-        self.productlabel3edit.setReadOnly(True)
-        self.productlabel4edit.setReadOnly(True)
+        self.measurementwindow.productlabel1edit.setReadOnly(True)
+        self.measurementwindow.productlabel2edit.setReadOnly(True)
+        self.measurementwindow.productlabel3edit.setReadOnly(True)
+        self.measurementwindow.productlabel4edit.setReadOnly(True)
+        self.measurementwindow.productlabel5edit.setReadOnly(True)
         
         #labels = [productlabel1edit, productlabel2edit, productlabel3edit, productlabel4edit]
     
     
-        # self.productlabel1edit.setStyleSheet("QLineEdit"
-        #                                     "{"
-        #                                     "background : lightgray;"
-        #                                     "}")
+        self.measurementwindow.productlabel1edit.setStyleSheet("QLineEdit"
+                                            "{"
+                                            #"background : lightgray;"
+                                            "color : gray;"
+                                            "}")
         # measurementwindow.productlabel1edit = self.productlabel1
         # measurementwindow.productlabel2edit = self.productlabel2
         # measurementwindow.productlabel3edit = self.productlabel3
