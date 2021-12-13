@@ -532,5 +532,22 @@
   <tabstop>checkBox_5</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>Einstellungen</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>606</x>
+     <y>655</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>685</x>
+     <y>691</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

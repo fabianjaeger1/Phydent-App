@@ -14,8 +14,8 @@ import subprocess
 
 
 #Import the MainWindow UI
-from loginMainWindowUI import Ui_MainWindow
-from mainwindowUI import Ui_Messungen
+# from loginMainWindowUI import Ui_MainWindow
+# from mainwindowUI import Ui_Messungen
 
 
 class Ui_Dialog(object):
