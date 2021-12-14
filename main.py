@@ -60,6 +60,7 @@ class login(QMainWindow, loginUI.Ui_login):
     def __init__(self, parent=None):
         super(login, self).__init__(parent)
         self.setupUi(self)
+        self.passinput.setEchoMode(QLineEdit.Password)
         self.loginbutton.clicked.connect(self.login)
         self.exitbutton.clicked.connect(self.exit_app)
         self.popups = []
