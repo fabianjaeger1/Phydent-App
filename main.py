@@ -1,5 +1,6 @@
 # Main Python file for the Phydent Application
 import sys
+import subprocess
 from PyQt5.QtGui     import *
 from PyQt5.QtCore    import *
 from PyQt5.QtWidgets import *
@@ -16,10 +17,11 @@ from PyQt5.QtWidgets import QDialog, QMainWindow
 
 # Import different window classes
 import measurementUI
-import loginUI
+#import loginUI_old
 import mainwindowUI
 import settingsUI
 import aboutUI 
+import loginUI
 
 
 
@@ -39,34 +41,48 @@ class measurement(QMainWindow, measurementUI.Ui_MainWindow):
     def __init__(self, parent=None):
         super(measurement, self).__init__(parent)
         self.setupUi(self)
+
         # self.productlabel1edit.setText(self.productlabel1var)  
         # self.productlabel2edit.setText(self.productlabel2var)
         # self.productlabel3edit.setText(self.productlabel3var)
         # self.productlabel4edit.setText(self.productlabel4var)
 
+    
         
-       
+        
+
     #def go_back(self):
         
         #self.loginbutton.clicked.connect(self.login)
         #self.popups = []
 
-class login(QMainWindow, loginUI.Ui_Dialog):
+class login(QMainWindow, loginUI.Ui_login):
     def __init__(self, parent=None):
         super(login, self).__init__(parent)
         self.setupUi(self)
         self.loginbutton.clicked.connect(self.login)
-        #self.popups = []
+        self.exitbutton.clicked.connect(self.exit_app)
+        self.popups = []
 
     #@QtCore.pyqtSlot()
     def login(self):
+        # print("clicked")
+        user = self.userinput.text()
+        password = self.passinput.text()
+        path_to_opus = 'C:\Program Files\Bruker\OPUS_8.7.10/opus.exe'
+        subprocess.Popen(['C:\Program Files\Bruker\OPUS_8.7.10/opus.exe','/Language=ENGLISH/OPUSPIPE=ON/HTTPSERVER=ON/HTTPPORT=80/DIRECTLOGINPASSWORD={}@{}'.format(user, password)])
         popwindow = mainwindow()
         popwindow.show()
         self.popups.append(popwindow)
+        w.hide()
+
+    def exit_app(self):
+        sys.exit()
 
 class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
     def __init__(self, parent=None):
-        super(mainwindow, self).__init__(parent)
+        self.mainwindow_app = super(mainwindow, self)
+        self.mainwindow_app.__init__(parent)
         self.setupUi(self)
 
         #self.measurementwindow = measurement()
@@ -80,6 +96,8 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         self.startmeasurementbutton_2.clicked.connect(self.exitapp)
 
         #self.startmeasurementbutton.clicked.connect(self.toggle_measurementwindow)
+
+        # SHOULD NOT CAUSE MEMORY LEAKAGE DUE TO HIDE/SHOW
         self.actionEinstellungen.triggered.connect(self.toggle_settingswindow)
         # self.actionAbout.triggered.connect(self.open_about)
         self.actionAbout.triggered.connect(self.toggle_about)
@@ -104,6 +122,11 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
             self.measurementwindow.hide()
         else:
             self.measurementwindow.show()
+
+    def go_back(self):
+        self.measurementwindow.close()
+        self.mainwindow_app.show()
+        
 
     def measurementstart(self):
         productlabel1 = self.productlabel1edit.text()
@@ -142,8 +165,11 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
 
         # measurementwindow.productlabel4edit = "Test"
         
+        self.measurementwindow.backbutton.clicked.connect(self.go_back)
+        
         self.measurementwindow.show()
         self.popups.append(self.measurementwindow)
+        self.mainwindow_app.hide()
         print(self.popups)
     
     def exitapp(self):
@@ -167,6 +193,8 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
             else:
                 print("Close Dialog")
                 dlg.close()
+        else:
+            sys.exit()
         
             # sys.exit()
     
