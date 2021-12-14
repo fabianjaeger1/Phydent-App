@@ -132,7 +132,7 @@ class Ui_Dialog(object):
         self.verticalLayout.addLayout(self.horizontalLayout)
 
         # Connect methods to buttons
-        self.loginbutton.clicked.connect(self.clickedfunc)
+        #self.loginbutton.clicked.connect(self.clickedfunc)
         self.exitbutton.clicked.connect(self.exit)
 
         self.retranslateUi(Dialog)

@@ -8,11 +8,13 @@ from PyQt5.uic.uiparser import QtWidgets
 from PyQt5.QtWidgets import QDialog, QMainWindow
 
 #from PyQt5 import QtCore, QtGui, QtWidgets
-from measurementUI import Ui_MainWindow
-# from loginUI import Ui_Dialog
-from mainwindowUI import Ui_Messungen
-# from loginMainWindowUI import Ui_MainWindow
+#from measurementUI import Ui_MainWindow
+#from loginUI import Ui_Dialog
+#from mainwindowUI import Ui_Messungen
+#from loginMainWindowUI import Ui_MainWindow
 
+
+# Import different window classes
 import measurementUI
 import loginUI
 import mainwindowUI
@@ -33,10 +35,6 @@ class settings(QMainWindow, settingsUI.Ui_Einstellungen):
         self.setupUi(self)
 
 class measurement(QMainWindow, measurementUI.Ui_MainWindow):
-    # productlabel1var = "Test"
-    # productlabel2var = "Test2"
-    # productlabel3var = "Test3"
-    # productlabel4var = ""
 
     def __init__(self, parent=None):
         super(measurement, self).__init__(parent)
@@ -53,18 +51,18 @@ class measurement(QMainWindow, measurementUI.Ui_MainWindow):
         #self.loginbutton.clicked.connect(self.login)
         #self.popups = []
 
-# class login(QMainWindow, loginUI.Ui_Dialog):
-#     def __init__(self, parent=None):
-#         super(login, self).__init__(parent)
-#         self.setupUi(self)
-#         self.loginbutton.clicked.connect(self.login)
-#         self.popups = []
+class login(QMainWindow, loginUI.Ui_Dialog):
+    def __init__(self, parent=None):
+        super(login, self).__init__(parent)
+        self.setupUi(self)
+        self.loginbutton.clicked.connect(self.login)
+        #self.popups = []
 
-#     #@QtCore.pyqtSlot()
-#     def login(self):
-#         popwindow = mainwindow()
-#         popwindow.show()
-#         self.popups.append(popwindow)
+    #@QtCore.pyqtSlot()
+    def login(self):
+        popwindow = mainwindow()
+        popwindow.show()
+        self.popups.append(popwindow)
 
 class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
     def __init__(self, parent=None):
@@ -74,6 +72,7 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         #self.measurementwindow = measurement()
         self.settingswindow = settings()
         self.aboutwindow = about()
+        self.loginwindow = login()
 
         self.startmeasurementbutton.clicked.connect(self.measurementstart)
         #self.actionEinstellungen.triggered.connect(self.open_settings)
@@ -202,12 +201,23 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
 #         self.popups.append(popWin)
 
 
+# if __name__ == "__main__":
+#     import sys
+#     app = QApplication(sys.argv)
+#     w = mainwindow()
+#     w.show()
+#     sys.exit(app.exec_())
+
+
 if __name__ == "__main__":
     import sys
     app = QApplication(sys.argv)
-    w = mainwindow()
+    w = login()
     w.show()
     sys.exit(app.exec_())
+
+
+
 
 
 # if __name__ == "__main__":
