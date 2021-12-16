@@ -109,24 +109,25 @@ class login(QMainWindow, loginUI.Ui_login):
         #self.popups.append(popwindow)
         w.close()
     
-    def background_measurement_start(self):
-        settings = QSettings("Phytax", "Phydent")
-        path = settings.value("data_path")
-        print(path)
-        OPUS_communication.opusrequest("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
-        current_time = time.ctime()
-        print(current_time)
-        settings.setValue("last_bckgr", "Letzte Hintergrundmessung: {}".format(current_time))
-        #self.mainapplication.__init__
-        self.mainapplication.__init__
-        #self.mainapplication.lastbackgroundmeasurementlabel.update()
-        #self.mainapplication.lastbackgroundmeasurementlabel.repaint()
-        #self.mainapplication.lastbackgroundmeasurementlabel.setAttribute(Qt.WA_StyledBackground, True)
-        #currentwindow = self.popups[0]
+    # def background_measurement_start(self):
+    #     settings = QSettings("Phytax", "Phydent")
+    #     path = settings.value("data_path")
+    #     print(path)
+    #     background = OPUS_communication.opusrequest("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
+    #     current_time = time.ctime()
+    #     print(background)
+    #     print(current_time)
+    #     settings.setValue("last_bckgr", "Letzte Hintergrundmessung: {}".format(current_time))
+    #     #self.mainapplication.__init__
+    #     self.mainapplication.__init__
+    #     #self.mainapplication.lastbackgroundmeasurementlabel.update()
+    #     #self.mainapplication.lastbackgroundmeasurementlabel.repaint()
+    #     #self.mainapplication.lastbackgroundmeasurementlabel.setAttribute(Qt.WA_StyledBackground, True)
+    #     #currentwindow = self.popups[0]
         
-        # reference=OPUS.opusrequest("127.0.0.1", 80, "MeasureReference(0, {EXP='ATR_Di.XPM', XPP='/mnt/c/Users/G164.PHYTAX/Desktop/phydent/', NSR=10})")
+    #     # reference=OPUS.opusrequest("127.0.0.1", 80, "MeasureReference(0, {EXP='ATR_Di.XPM', XPP='/mnt/c/Users/G164.PHYTAX/Desktop/phydent/', NSR=10})")
         
-        print("Test")
+    #     print("Test")
 
     def exit_app(self):
         sys.exit()
@@ -144,6 +145,7 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         path = settings.value("data_path")
         print(path)
         OPUS_communication.opusrequest_fireandforget("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
+        #OPUS_communication.opusrequest("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
         current_time = time.ctime()
         print(current_time)
         settings.setValue("last_bckgr", "Letzte Hintergrundmessung: {}".format(current_time))

@@ -12,6 +12,20 @@ def check_port_open():
         print("Port is not open")
 
 
+def opusrequest_fireandforget(IP,port,command):
+    # print(socket.gethostbyname(socket.gethostname()))
+    command=command.replace(" ", "%20")
+    request="GET /OpusCommand.htm?" + command + "\r\n\r\n"
+    # print(request)
+    data = ""
+    part = None
+
+    #request to OPUS
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((IP,port))
+    s.sendall(request.encode("windows-1252"))
+    #construct answer partially from "byte stream"
+    s.close()
 
 def opusrequest(IP,port,command):
     # print(socket.gethostbyname(socket.gethostname()))
