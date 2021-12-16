@@ -44,8 +44,6 @@ class settings(QMainWindow, settingsUI.Ui_Einstellungen):
         
         self.readSettings()
         
-
-        
         self.logdatei_edit.setText(settings_data.value("log_path"))
         self.messsdaten_edit.setText(settings_data.value("data_path"))
         
@@ -93,7 +91,9 @@ class login(QMainWindow, loginUI.Ui_login):
         self.passinput.setEchoMode(QLineEdit.Password)
         self.loginbutton.clicked.connect(self.login)
         self.exitbutton.clicked.connect(self.exit_app)
-        self.popups = []
+        self.mainapplication = mainwindow()
+        #self.mainapplication.backgroundbutton.clicked.connect(self.background_measurement_start)
+        #self.popups = []
 
     #@QtCore.pyqtSlot()
     def login(self):
@@ -102,21 +102,27 @@ class login(QMainWindow, loginUI.Ui_login):
         password = self.passinput.text()
         path_to_opus = 'C:\Program Files\Bruker\OPUS_8.7.10/opus.exe'
         subprocess.Popen(['C:\Program Files\Bruker\OPUS_8.7.10/opus.exe','/Language=ENGLISH/OPUSPIPE=ON/HTTPSERVER=ON/HTTPPORT=80/DIRECTLOGINPASSWORD={}@{}'.format(user, password)])
-        popwindow = mainwindow()
-        popwindow.backgroundbutton.clicked.connect(self.background_measurement_start)
+        # popwindow = mainwindow()
+        
 
-        popwindow.show()
-        self.popups.append(popwindow)
+        self.mainapplication.show()
+        #self.popups.append(popwindow)
         w.close()
     
     def background_measurement_start(self):
-        path = self.settings_data.value("data_path")
+        settings = QSettings("Phytax", "Phydent")
+        path = settings.value("data_path")
         print(path)
         OPUS_communication.opusrequest("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
         current_time = time.ctime()
         print(current_time)
-        self.settings_data.setValue("last_bckgr", "Letzte Hintergrundmessung: {}".format(current_time))
-        currentwindow = self.popups[0]
+        settings.setValue("last_bckgr", "Letzte Hintergrundmessung: {}".format(current_time))
+        #self.mainapplication.__init__
+        self.mainapplication.__init__
+        #self.mainapplication.lastbackgroundmeasurementlabel.update()
+        #self.mainapplication.lastbackgroundmeasurementlabel.repaint()
+        #self.mainapplication.lastbackgroundmeasurementlabel.setAttribute(Qt.WA_StyledBackground, True)
+        #currentwindow = self.popups[0]
         
         # reference=OPUS.opusrequest("127.0.0.1", 80, "MeasureReference(0, {EXP='ATR_Di.XPM', XPP='/mnt/c/Users/G164.PHYTAX/Desktop/phydent/', NSR=10})")
         
@@ -132,6 +138,19 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
     @staticmethod
     def valueToBool(value):
         return value.lower() == 'true' if isinstance(value, str) else bool(value)
+
+    def background_measurement_start(self):
+        settings = QSettings("Phytax", "Phydent")
+        path = settings.value("data_path")
+        print(path)
+        OPUS_communication.opusrequest("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
+        current_time = time.ctime()
+        print(current_time)
+        settings.setValue("last_bckgr", "Letzte Hintergrundmessung: {}".format(current_time))
+        #self.mainapplication.__init__
+        self.lastbackgroundmeasurementlabel.setText(settings.value("last_bckgr"))
+        self.lastbackgroundmeasurementlabel.update()
+        #self.__init__
     
     def readSettings(self):
         settings = QSettings("Phytax", "Phydent")
@@ -231,7 +250,6 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         self.mainwindow_app.__init__(parent)
         self.setupUi(self)
 
-        self.lastbackgroundmeasurementlabel.setText(self.settings_data.value("last_bckgr"))
         # showTitle = self.valueToBool(settings.value('Settings/showTitle', True))
         #self.showTitleCheckBox.setChecked(showTitle)
 
@@ -250,9 +268,11 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         # WHEN HIDE/SHOW METHOD ENABLED
         #self.measurementwindow = measurement()
         #self.settingswindow = settings()
+
+        self.backgroundbutton.clicked.connect(self.background_measurement_start)
         
         self.aboutwindow = about()
-        self.loginwindow = login()
+        #self.loginwindow = login()
 
         self.startmeasurementbutton.clicked.connect(self.measurementstart)
         #self.actionEinstellungen.triggered.connect(self.open_settings)
@@ -267,6 +287,11 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         # self.actionEinstellungen.triggered.connect(self.toggle_settingswindow)
         
         self.actionAbout.triggered.connect(self.toggle_about)
+        self.lastbackgroundmeasurementlabel.setText(settings.value("last_bckgr"))
+        print(settings.value("last_bckgr"))
+        self.lastbackgroundmeasurementlabel.update()
+        self.lastbackgroundmeasurementlabel.hide()
+        self.lastbackgroundmeasurementlabel.show()
 
         self.popups = []
     
