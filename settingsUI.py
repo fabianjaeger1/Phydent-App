@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Einstellungen(object):
     def setupUi(self, Einstellungen):
         Einstellungen.setObjectName("Einstellungen")
-        Einstellungen.resize(881, 686)
+        Einstellungen.resize(881, 691)
         font = QtGui.QFont()
         font.setFamily("Source Sans Pro")
         font.setPointSize(12)
@@ -203,7 +203,6 @@ class Ui_Einstellungen(object):
         Einstellungen.setStatusBar(self.statusbar)
 
         self.retranslateUi(Einstellungen)
-        self.cancel_button.clicked.connect(Einstellungen.close) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Einstellungen)
         Einstellungen.setTabOrder(self.productlabel1edit, self.productlabel2edit)
         Einstellungen.setTabOrder(self.productlabel2edit, self.productlabel3edit)

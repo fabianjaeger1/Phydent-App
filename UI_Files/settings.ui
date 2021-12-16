@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>881</width>
-    <height>686</height>
+    <height>691</height>
    </rect>
   </property>
   <property name="font">
@@ -532,22 +532,5 @@
   <tabstop>productlabel5check</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>cancel_button</sender>
-   <signal>clicked()</signal>
-   <receiver>Einstellungen</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>606</x>
-     <y>655</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>685</x>
-     <y>691</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
