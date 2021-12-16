@@ -1,6 +1,7 @@
 # Main Python file for the Phydent Application
 import sys
 import os
+import time
 import subprocess
 
 from PyQt5.QtGui     import *
@@ -84,6 +85,8 @@ class measurement(QMainWindow, measurementUI.Ui_MainWindow):
         #self.popups = []
 
 class login(QMainWindow, loginUI.Ui_login):
+    settings_data = QSettings("Phytax", "Phydent")
+
     def __init__(self, parent=None):
         super(login, self).__init__(parent)
         self.setupUi(self)
@@ -100,9 +103,24 @@ class login(QMainWindow, loginUI.Ui_login):
         path_to_opus = 'C:\Program Files\Bruker\OPUS_8.7.10/opus.exe'
         subprocess.Popen(['C:\Program Files\Bruker\OPUS_8.7.10/opus.exe','/Language=ENGLISH/OPUSPIPE=ON/HTTPSERVER=ON/HTTPPORT=80/DIRECTLOGINPASSWORD={}@{}'.format(user, password)])
         popwindow = mainwindow()
+        popwindow.backgroundbutton.clicked.connect(self.background_measurement_start)
+
         popwindow.show()
         self.popups.append(popwindow)
         w.close()
+    
+    def background_measurement_start(self):
+        path = self.settings_data.value("data_path")
+        print(path)
+        OPUS_communication.opusrequest("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
+        current_time = time.ctime()
+        print(current_time)
+        self.settings_data.setValue("last_bckgr", "Letzte Hintergrundmessung: {}".format(current_time))
+        currentwindow = self.popups[0]
+        
+        # reference=OPUS.opusrequest("127.0.0.1", 80, "MeasureReference(0, {EXP='ATR_Di.XPM', XPP='/mnt/c/Users/G164.PHYTAX/Desktop/phydent/', NSR=10})")
+        
+        print("Test")
 
     def exit_app(self):
         sys.exit()
@@ -212,6 +230,8 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         self.mainwindow_app = super(mainwindow, self)
         self.mainwindow_app.__init__(parent)
         self.setupUi(self)
+
+        self.lastbackgroundmeasurementlabel.setText(self.settings_data.value("last_bckgr"))
         # showTitle = self.valueToBool(settings.value('Settings/showTitle', True))
         #self.showTitleCheckBox.setChecked(showTitle)
 
@@ -235,7 +255,6 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         self.loginwindow = login()
 
         self.startmeasurementbutton.clicked.connect(self.measurementstart)
-        self.backgroundbutton.clicked.connect(self.background_measurement_start)
         #self.actionEinstellungen.triggered.connect(self.open_settings)
 
         self.startmeasurementbutton_2.clicked.connect(self.exitapp)
@@ -342,12 +361,6 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         w.show()
         self.settingswindow.close()
         
-    def background_measurement_start(self):
-        path = self.settings_data.value("data_path")
-        print(path)
-        OPUS_communication.opusrequest("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
-        # reference=OPUS.opusrequest("127.0.0.1", 80, "MeasureReference(0, {EXP='ATR_Di.XPM', XPP='/mnt/c/Users/G164.PHYTAX/Desktop/phydent/', NSR=10})")
-        print("Test")
         
     
     def save_application_settings(self):
