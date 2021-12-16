@@ -34,7 +34,10 @@ class settings(QMainWindow, settingsUI.Ui_Einstellungen):
     def __init__(self, parent = None):
         super(settings, self).__init__(parent)
         self.setupUi(self)
+        
         self.readSettings()
+        
+        
         
     def readSettings(self):
         settings = QSettings("Phytax", "Phydent")
@@ -45,11 +48,11 @@ class settings(QMainWindow, settingsUI.Ui_Einstellungen):
 
     def writeSettings(self):
         settings = QSettings("Phytax", "Phydent")
-        settings.setValue("pos_settings", self.mainwindow_app.pos())
-        settings.setValue("size_settings", self.mainwindow_app.size())
+        settings.setValue("pos_settings", self.pos())
+        settings.setValue("size_settings", self.size())
     
-    # def closeEvent(self, event):
-    #     self.writeSettings()
+    def closeEvent(self, event):
+        self.writeSettings()
     
     # def close_event(self,event):
     #     self.settings
@@ -100,23 +103,108 @@ class login(QMainWindow, loginUI.Ui_login):
 
 class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
     
+    @staticmethod
+    def valueToBool(value):
+        return value.lower() == 'true' if isinstance(value, str) else bool(value)
+    
     def readSettings(self):
         settings = QSettings("Phytax", "Phydent")
         position = settings.value("pos_mainwindow", QPoint(200,200))
         size = settings.value("size_mainwindow", QSize(400,400))
         self.resize(size)
         self.move(position)
+        productlabel1_check = self.valueToBool(settings.value("productlabel1check", False))
+        productlabel2_check = self.valueToBool(settings.value("productlabel2check", False))
+        productlabel3_check = self.valueToBool(settings.value("productlabel3check", False))
+        productlabel4_check = self.valueToBool(settings.value("productlabel4check", False))
+        productlabel5_check = self.valueToBool(settings.value("productlabel5check", False))
+        #print(productlabel1_check)
+        # for i in labels:
+        #     if {i}_check == True:
+        #         i = settings.value("{}".format(i))
+        #         self.{i}.setText({i})
+        #background_color = "lightgray"
+        
+        if productlabel1_check == True:
+            productlabel1 = settings.value("productlabel1")
+            self.productlabel1.setText(productlabel1)
+            self.productlabel1.setStyleSheet("color: rgb(105, 138, 147);")
+        else:
+            self.productlabel1edit.setStyleSheet("QLineEdit"
+                                            "{"
+                                            "background : lightgray;"
+                                            "color : gray;"
+                                            "}")
+            self.productlabel1.setText("")
+            self.productlabel1edit.setReadOnly(True)
+            
+        if productlabel2_check == True:
+            productlabel2 = settings.value("productlabel2")
+            self.productlabel2.setText(productlabel2)
+            self.productlabel2.setStyleSheet("color: rgb(105, 138, 147);")
+        else:
+            self.productlabel2edit.setStyleSheet("QLineEdit"
+                                            "{"
+                                            "background : lightgray;"
+                                            "color : gray;"
+                                            "}")
+            self.productlabel2.setText("")
+            self.productlabel2edit.setReadOnly(True)
+        
+        if productlabel3_check == True:
+            productlabel3 = settings.value("productlabel3")
+            self.productlabel3.setText(productlabel3)
+            self.productlabel3.setStyleSheet("color: rgb(105, 138, 147);")
+        else:
+            self.productlabel3edit.setStyleSheet("QLineEdit"
+                                            "{"
+                                            "background : lightgray;"
+                                            "color : gray;"
+                                            "}")
+            self.productlabel3.setText("")
+            self.productlabel3edit.setReadOnly(True)
+            
+        if productlabel4_check == True:
+            productlabel4 = settings.value("productlabel4")
+            self.productlabel4.setText(productlabel4)
+            self.productlabel4.setStyleSheet("color: rgb(105, 138, 147);")
+        else:
+            self.productlabel4edit.setStyleSheet("QLineEdit"
+                                            "{"
+                                            "background : lightgray;"
+                                            "color : gray;"
+                                            "}")
+            self.productlabel4.setText("")
+            self.productlabel4edit.setReadOnly(True)
+            
+        if productlabel5_check == True:
+            productlabel5 = settings.value("productlabel5")
+            self.productlabel5.setText(productlabel5)
+            self.productlabel5.setStyleSheet("color: rgb(105, 138, 147);")
+        else:
+            self.productlabel5edit.setStyleSheet("QLineEdit"
+                                            "{"
+                                            "background : lightgray;"
+                                            "color : gray;"
+                                            "}")
+            self.productlabel5.setText("")
+            self.productlabel5edit.setReadOnly(True)
+            
+        
     
     def writeSettings(self):
         settings = QSettings("Phytax", "Phydent")
         settings.setValue("pos_mainwindow", self.mainwindow_app.pos())
         settings.setValue("size_mainwindow", self.mainwindow_app.size())
-    
+        
     def __init__(self, parent=None):
+        settings = QSettings("Phytax", "Phydent")
         self.mainwindow_app = super(mainwindow, self)
         self.mainwindow_app.__init__(parent)
         self.setupUi(self)
-        
+        # showTitle = self.valueToBool(settings.value('Settings/showTitle', True))
+        #self.showTitleCheckBox.setChecked(showTitle)
+
         #self.mainwindow_app.closeEvent = self.closeEvent
         
         self.readSettings()
@@ -160,13 +248,120 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         self.settingswindow = settings()
         self.settingswindow.show()
         
-        # self.settingswindow.
+        settings_data = QSettings("Phytax", "Phydent")
+        
+        self.settingswindow.cancel_button.clicked.connect(self.go_back_settings)
+        self.settingswindow.save_button.clicked.connect(self.save_application_settings)
+        
+        productlabel1_check = self.valueToBool( settings_data.value("productlabel1check", False))
+        productlabel2_check = self.valueToBool( settings_data.value("productlabel2check", False))
+        productlabel3_check = self.valueToBool( settings_data.value("productlabel3check", False))
+        productlabel4_check = self.valueToBool( settings_data.value("productlabel4check", False))
+        productlabel5_check = self.valueToBool( settings_data.value("productlabel5check", False))
+        #print(productlabel1_check)
+        # for i in labels:
+        #     if {i}_check == True:
+        #         i = settings.value("{}".format(i))
+        #         self.{i}.setText({i})
+        #background_color = "lightgray"
+    
+        self.settingswindow.productlabel1check.setChecked(productlabel1_check)
+        productlabel1 =  settings_data.value("productlabel1")
+        self.settingswindow.productlabel1edit.setText(productlabel1)
+        self.settingswindow.productlabel1edit.setStyleSheet("color: rgb(105, 138, 147);")
+        
+
+        self.settingswindow.productlabel2check.setChecked(productlabel2_check)
+        productlabel2 =  settings_data.value("productlabel2")
+        self.settingswindow.productlabel2edit.setText(productlabel2)
+        self.settingswindow.productlabel2edit.setStyleSheet("color: rgb(105, 138, 147);")
+    
+    
+        self.settingswindow.productlabel3check.setChecked(productlabel3_check)
+        productlabel3 =  settings_data.value("productlabel3")
+        self.settingswindow.productlabel3edit.setText(productlabel3)
+        self.settingswindow.productlabel3edit.setStyleSheet("color: rgb(105, 138, 147);")
+        
+        self.settingswindow.productlabel4check.setChecked(productlabel4_check)
+        productlabel4 =  settings_data.value("productlabel4")
+        self.settingswindow.productlabel4edit.setText(productlabel4)
+        self.settingswindow.productlabel4edit.setStyleSheet("color: rgb(105, 138, 147);")
+
+        self.settingswindow.productlabel5check.setChecked(productlabel5_check)
+        productlabel5 =  settings_data.value("productlabel5")
+        self.settingswindow.productlabel5edit.setText(productlabel5)
+        self.settingswindow.productlabel5edit.setStyleSheet("color: rgb(105, 138, 147);")
+
         
         self.mainwindow_app.close()
         
     def go_back_settings(self):
+        
+    
+        w = mainwindow()
+        w.show()
         self.settingswindow.close()
-        mainwindow.__init__
+        
+    
+    def save_application_settings(self):
+        settings = QSettings("Phytax", "Phydent")
+        
+        if self.settingswindow.productlabel1check.isChecked() == True:
+            settings.setValue("productlabel1check", True)
+            settings.setValue("productlabel1", self.settingswindow.productlabel1edit.text())
+            print("Value prodlabel1_checked saved as true")
+        if self.settingswindow.productlabel1check.isChecked() == False:
+            settings.setValue("productlabel1check", False)
+            settings.setValue("productlabel1", self.settingswindow.productlabel1edit.text())
+            print("Value prodlabel1_checked saved as false")
+            
+                         
+        if self.settingswindow.productlabel2check.isChecked() == True:
+            settings.setValue("productlabel2check", True)
+            settings.setValue("productlabel2", self.settingswindow.productlabel2edit.text())
+            print("Value prodlabel2_checked saved")
+        
+        if self.settingswindow.productlabel2check.isChecked() == False:
+            settings.setValue("productlabel2check", False)
+            settings.setValue("productlabel2", self.settingswindow.productlabel2edit.text())
+            print("Value prodlabel2_checked saved as false")
+            
+            
+        if self.settingswindow.productlabel3check.isChecked() == True:
+            settings.setValue("productlabel3check", True)
+            settings.setValue("productlabel3", self.settingswindow.productlabel3edit.text())
+            print("Value prodlabel3_checked saved")
+        
+        if self.settingswindow.productlabel3check.isChecked() == False:
+            settings.setValue("productlabel3check", False)
+            settings.setValue("productlabel3", self.settingswindow.productlabel3edit.text())
+            print("Value prodlabel3_checked saved as false")
+            
+            
+        if self.settingswindow.productlabel4check.isChecked() == True:
+            settings.setValue("productlabel4check", True)
+            settings.setValue("productlabel4", self.settingswindow.productlabel4edit.text())
+            print("Value prodlabel4_checked saved")
+        
+        if self.settingswindow.productlabel4check.isChecked() == False:
+            settings.setValue("productlabel4check", False)
+            settings.setValue("productlabel4", self.settingswindow.productlabel4edit.text())
+            print("Value prodlabel4_checked saved as false")
+                 
+                 
+        if self.settingswindow.productlabel5check.isChecked() == True:
+            settings.setValue("productlabel5check", True)
+            settings.setValue("productlabel5", self.settingswindow.productlabel5edit.text())
+            print("Value prodlabel5_checked saved")
+        
+        if self.settingswindow.productlabel5check.isChecked() == False:
+            settings.setValue("productlabel5check", False)
+            settings.setValue("productlabel5", self.settingswindow.productlabel5edit.text())
+            print("Value prodlabel5_checked saved as false")
+            
+        w = mainwindow()
+        w.show()
+        self.settingswindow.close()
         
     
     def toggle_about(self, checked):
@@ -175,11 +370,11 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         else:
             self.aboutwindow.show()
 
-    def toggle_settingswindow(self, checked):
-        if self.settingswindow.isVisible():
-            self.settingswindow.hide()
-        else:
-            self.settingswindow.show()
+    # def toggle_settingswindow(self, checked):
+    #     if self.settingswindow.isVisible():
+    #         self.settingswindow.hide()
+    #     else:
+    #         self.settingswindow.show()
 
     # def toggle_measurementwindow(self, checked):
     #     if self.measurementwindow.isVisible():
@@ -193,20 +388,48 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         
 
     def measurementstart(self):
+        settings = QSettings("Phytax", "Phydent")
+        
+         # Instantiate measurement class 
+        self.measurementwindow = measurement()
+        
         productlabel1 = self.productlabel1edit.text()
         productlabel2 = self.productlabel2edit.text()
         productlabel3 = self.productlabel3edit.text()
         productlabel4 = self.productlabel4edit.text()
         productlabel5 = self.productlabel5edit.text()
+        
+        
+        productlabel1_check = self.valueToBool(settings.value("productlabel1check", False))
+        productlabel2_check = self.valueToBool(settings.value("productlabel2check", False))
+        productlabel3_check = self.valueToBool(settings.value("productlabel3check", False))
+        productlabel4_check = self.valueToBool(settings.value("productlabel4check", False))
+        productlabel5_check = self.valueToBool(settings.value("productlabel5check", False))
 
-        # Instantiate measurement class 
-        self.measurementwindow = measurement()
+              
+        self.measurementwindow.productlabel1edit.setReadOnly(True)
+        self.measurementwindow.productlabel2edit.setReadOnly(True)
+        self.measurementwindow.productlabel3edit.setReadOnly(True)
+        self.measurementwindow.productlabel4edit.setReadOnly(True)
+        self.measurementwindow.productlabel5edit.setReadOnly(True)
         
-        labelsedit = [productlabel1edit, productlabel2edit, productlabel3edit, productlabel4edit]
-        labels = [productlabel1, productlabel2, productlabel3, productlabel4]
+                 
+        self.measurementwindow.productlabel1.setText(settings.value("productlabel1"))
+        self.measurementwindow.productlabel2.setText(settings.value("productlabel2"))
+        self.measurementwindow.productlabel3.setText(settings.value("productlabel3"))
+        self.measurementwindow.productlabel4.setText(settings.value("productlabel4"))
+        self.measurementwindow.productlabel5.setText(settings.value("productlabel5"))
         
-        # for var in range(1,4):
-        #     self.measurementwindow{}.format(self.var)
+        if productlabel1_check == False:
+            self.measurementwindow.productlabel1.setText("")
+        if productlabel2_check == False:
+            self.measurementwindow.productlabel2.setText("")
+        if productlabel3_check == False:
+            self.measurementwindow.productlabel3.setText("")
+        if productlabel4_check == False:
+            self.measurementwindow.productlabel4.setText("")
+        if productlabel5_check == False:
+            self.measurementwindow.productlabel5.setText("")
         
         self.measurementwindow.productlabel1edit.setText(productlabel1)
         self.measurementwindow.productlabel2edit.setText(productlabel2)
@@ -214,16 +437,36 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         self.measurementwindow.productlabel4edit.setText(productlabel4)
         self.measurementwindow.productlabel5edit.setText(productlabel5)
 
-        self.measurementwindow.productlabel1edit.setReadOnly(True)
-        self.measurementwindow.productlabel2edit.setReadOnly(True)
-        self.measurementwindow.productlabel3edit.setReadOnly(True)
-        self.measurementwindow.productlabel4edit.setReadOnly(True)
-        self.measurementwindow.productlabel5edit.setReadOnly(True)
+ 
         
-       
-    
-    
+        self.measurementwindow.productlabel1.setStyleSheet("color: rgb(105, 138, 147);")
+        self.measurementwindow.productlabel2.setStyleSheet("color: rgb(105, 138, 147);")
+        self.measurementwindow.productlabel3.setStyleSheet("color: rgb(105, 138, 147);")
+        self.measurementwindow.productlabel4.setStyleSheet("color: rgb(105, 138, 147);")
+        self.measurementwindow.productlabel5.setStyleSheet("color: rgb(105, 138, 147);")
+        
+        
         self.measurementwindow.productlabel1edit.setStyleSheet("QLineEdit"
+                                            "{"
+                                            #"background : lightgray;"
+                                            "color : gray;"
+                                            "}")
+        self.measurementwindow.productlabel2edit.setStyleSheet("QLineEdit"
+                                            "{"
+                                            #"background : lightgray;"
+                                            "color : gray;"
+                                            "}")
+        self.measurementwindow.productlabel3edit.setStyleSheet("QLineEdit"
+                                            "{"
+                                            #"background : lightgray;"
+                                            "color : gray;"
+                                            "}")
+        self.measurementwindow.productlabel4edit.setStyleSheet("QLineEdit"
+                                            "{"
+                                            #"background : lightgray;"
+                                            "color : gray;"
+                                            "}")
+        self.measurementwindow.productlabel5edit.setStyleSheet("QLineEdit"
                                             "{"
                                             #"background : lightgray;"
                                             "color : gray;"
