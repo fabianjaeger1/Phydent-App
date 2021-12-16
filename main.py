@@ -143,7 +143,7 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         settings = QSettings("Phytax", "Phydent")
         path = settings.value("data_path")
         print(path)
-        OPUS_communication.opusrequest("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
+        OPUS_communication.opusrequest_fireandforget("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
         current_time = time.ctime()
         print(current_time)
         settings.setValue("last_bckgr", "Letzte Hintergrundmessung: {}".format(current_time))
@@ -566,9 +566,9 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         self.measurementwindow.backbutton.clicked.connect(self.go_back)
         
         self.measurementwindow.show()
-        self.popups.append(self.measurementwindow)
+        #self.popups.append(self.measurementwindow)
         self.mainwindow_app.hide()
-        print(self.popups)
+        #print(self.popups)
     
     def exitapp(self):
         if self.measurementwindow.isVisible():
