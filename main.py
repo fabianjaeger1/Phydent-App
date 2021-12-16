@@ -68,10 +68,6 @@ class measurement(QMainWindow, measurementUI.Ui_MainWindow):
         # self.productlabel3edit.setText(self.productlabel3var)
         # self.productlabel4edit.setText(self.productlabel4var)
 
-    
-        
-        
-
     #def go_back(self):
         
         #self.loginbutton.clicked.connect(self.login)
@@ -118,6 +114,8 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         productlabel3_check = self.valueToBool(settings.value("productlabel3check", False))
         productlabel4_check = self.valueToBool(settings.value("productlabel4check", False))
         productlabel5_check = self.valueToBool(settings.value("productlabel5check", False))
+        
+        
         #print(productlabel1_check)
         # for i in labels:
         #     if {i}_check == True:
@@ -258,6 +256,8 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         productlabel3_check = self.valueToBool( settings_data.value("productlabel3check", False))
         productlabel4_check = self.valueToBool( settings_data.value("productlabel4check", False))
         productlabel5_check = self.valueToBool( settings_data.value("productlabel5check", False))
+        
+        
         #print(productlabel1_check)
         # for i in labels:
         #     if {i}_check == True:
@@ -422,14 +422,20 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         
         if productlabel1_check == False:
             self.measurementwindow.productlabel1.setText("")
+            self.measurementwindow.productlabel1edit.setHidden(True)
+
         if productlabel2_check == False:
             self.measurementwindow.productlabel2.setText("")
+            self.measurementwindow.productlabel2edit.setHidden(True)
         if productlabel3_check == False:
             self.measurementwindow.productlabel3.setText("")
+            self.measurementwindow.productlabel3edit.setHidden(True)
         if productlabel4_check == False:
             self.measurementwindow.productlabel4.setText("")
+            self.measurementwindow.productlabel4edit.setHidden(True)
         if productlabel5_check == False:
             self.measurementwindow.productlabel5.setText("")
+            self.measurementwindow.productlabel5edit.setHidden(True)
         
         self.measurementwindow.productlabel1edit.setText(productlabel1)
         self.measurementwindow.productlabel2edit.setText(productlabel2)
@@ -471,12 +477,6 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
                                             #"background : lightgray;"
                                             "color : gray;"
                                             "}")
-        # measurementwindow.productlabel1edit = self.productlabel1
-        # measurementwindow.productlabel2edit = self.productlabel2
-        # measurementwindow.productlabel3edit = self.productlabel3
-        # measurementwindow.productlabel4edit = self.productlabel4
-
-        # measurementwindow.productlabel4edit = "Test"
         
         self.measurementwindow.backbutton.clicked.connect(self.go_back)
         
