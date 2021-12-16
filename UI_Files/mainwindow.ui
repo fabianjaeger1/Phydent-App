@@ -487,6 +487,16 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>backgroundbutton</tabstop>
+  <tabstop>productlabel1edit</tabstop>
+  <tabstop>productlabel2edit</tabstop>
+  <tabstop>productlabel3edit</tabstop>
+  <tabstop>productlabel4edit</tabstop>
+  <tabstop>productlabel5edit</tabstop>
+  <tabstop>startmeasurementbutton</tabstop>
+  <tabstop>startmeasurementbutton_2</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

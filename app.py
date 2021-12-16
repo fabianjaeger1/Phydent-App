@@ -60,6 +60,7 @@ print(status)
 
 path = opusrequest(localhost, port, "GET_OPUSPATH")
 opus_path = path[1]
+result = opusrequest(localhost, port, "TAKE_REFERENCE")
 print(opus_path)
 #reference=opusrequest("127.0.0.1", 80, "MeasureReference(0, {EXP='ATR_Di.XPM', XPP='/mnt/c/Users/G164.PHYTAX/Desktop/phydent/', NSR=10})")
 #print(reference)
