@@ -24,7 +24,6 @@ import aboutUI
 import loginUI
 
 
-
 class about(QMainWindow, aboutUI.Ui_MainWindow):
     def __init__(self, parent = None):
         super(about, self).__init__(parent)
@@ -35,6 +34,25 @@ class settings(QMainWindow, settingsUI.Ui_Einstellungen):
     def __init__(self, parent = None):
         super(settings, self).__init__(parent)
         self.setupUi(self)
+        self.readSettings()
+        
+    def readSettings(self):
+        settings = QSettings("Phytax", "Phydent")
+        position = settings.value("pos_settings", QPoint(200,200))
+        size = settings.value("size_settings", QSize(400,400))
+        self.resize(size)
+        self.move(position)
+
+    def writeSettings(self):
+        settings = QSettings("Phytax", "Phydent")
+        settings.setValue("pos_settings", self.mainwindow_app.pos())
+        settings.setValue("size_settings", self.mainwindow_app.size())
+    
+    # def closeEvent(self, event):
+    #     self.writeSettings()
+    
+    # def close_event(self,event):
+    #     self.settings
 
 class measurement(QMainWindow, measurementUI.Ui_MainWindow):
 
@@ -81,13 +99,40 @@ class login(QMainWindow, loginUI.Ui_login):
         sys.exit()
 
 class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
+    
+    def readSettings(self):
+        settings = QSettings("Phytax", "Phydent")
+        position = settings.value("pos_mainwindow", QPoint(200,200))
+        size = settings.value("size_mainwindow", QSize(400,400))
+        self.resize(size)
+        self.move(position)
+    
+    def writeSettings(self):
+        settings = QSettings("Phytax", "Phydent")
+        settings.setValue("pos_mainwindow", self.mainwindow_app.pos())
+        settings.setValue("size_mainwindow", self.mainwindow_app.size())
+    
     def __init__(self, parent=None):
         self.mainwindow_app = super(mainwindow, self)
         self.mainwindow_app.__init__(parent)
         self.setupUi(self)
-
+        
+        #self.mainwindow_app.closeEvent = self.closeEvent
+        
+        self.readSettings()
+        
+        # try: 
+        #     self.resize(self.settings.value('window size'))
+        #     self.move(self.settings.value('window position'))
+        #     print(self.settings.value('test'))
+        # except:
+        #     pass
+        
+        
+        # WHEN HIDE/SHOW METHOD ENABLED
         #self.measurementwindow = measurement()
-        self.settingswindow = settings()
+        #self.settingswindow = settings()
+        
         self.aboutwindow = about()
         self.loginwindow = login()
 
@@ -95,16 +140,34 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         #self.actionEinstellungen.triggered.connect(self.open_settings)
 
         self.startmeasurementbutton_2.clicked.connect(self.exitapp)
+        
+        self.actionEinstellungen.triggered.connect(self.open_settingswindow)
 
         #self.startmeasurementbutton.clicked.connect(self.toggle_measurementwindow)
 
         # SHOULD NOT CAUSE MEMORY LEAKAGE DUE TO HIDE/SHOW
-        self.actionEinstellungen.triggered.connect(self.toggle_settingswindow)
-        # self.actionAbout.triggered.connect(self.open_about)
+        # self.actionEinstellungen.triggered.connect(self.toggle_settingswindow)
+        
         self.actionAbout.triggered.connect(self.toggle_about)
-        # self.actionEinstellungen.triggered.connect(self.)
 
         self.popups = []
+    
+    def closeEvent(self, event):
+        self.writeSettings()
+        #print("Test")
+        
+    def open_settingswindow(self, checked):
+        self.settingswindow = settings()
+        self.settingswindow.show()
+        
+        # self.settingswindow.
+        
+        self.mainwindow_app.close()
+        
+    def go_back_settings(self):
+        self.settingswindow.close()
+        mainwindow.__init__
+        
     
     def toggle_about(self, checked):
         if self.aboutwindow.isVisible():
@@ -118,11 +181,11 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         else:
             self.settingswindow.show()
 
-    def toggle_measurementwindow(self, checked):
-        if self.measurementwindow.isVisible():
-            self.measurementwindow.hide()
-        else:
-            self.measurementwindow.show()
+    # def toggle_measurementwindow(self, checked):
+    #     if self.measurementwindow.isVisible():
+    #         self.measurementwindow.hide()
+    #     else:
+    #         self.measurementwindow.show()
 
     def go_back(self):
         self.measurementwindow.close()
@@ -139,6 +202,12 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         # Instantiate measurement class 
         self.measurementwindow = measurement()
         
+        labelsedit = [productlabel1edit, productlabel2edit, productlabel3edit, productlabel4edit]
+        labels = [productlabel1, productlabel2, productlabel3, productlabel4]
+        
+        # for var in range(1,4):
+        #     self.measurementwindow{}.format(self.var)
+        
         self.measurementwindow.productlabel1edit.setText(productlabel1)
         self.measurementwindow.productlabel2edit.setText(productlabel2)
         self.measurementwindow.productlabel3edit.setText(productlabel3)
@@ -151,7 +220,7 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         self.measurementwindow.productlabel4edit.setReadOnly(True)
         self.measurementwindow.productlabel5edit.setReadOnly(True)
         
-        #labels = [productlabel1edit, productlabel2edit, productlabel3edit, productlabel4edit]
+       
     
     
         self.measurementwindow.productlabel1edit.setStyleSheet("QLineEdit"
