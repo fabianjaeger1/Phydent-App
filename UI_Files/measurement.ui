@@ -460,6 +460,19 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>productlabel1edit</tabstop>
+  <tabstop>productlabel2edit</tabstop>
+  <tabstop>productlabel3edit</tabstop>
+  <tabstop>productlabel4edit</tabstop>
+  <tabstop>productlabel5edit</tabstop>
+  <tabstop>logPrompt</tabstop>
+  <tabstop>graphicsView</tabstop>
+  <tabstop>classname</tabstop>
+  <tabstop>confidence</tabstop>
+  <tabstop>printbutton</tabstop>
+  <tabstop>backbutton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

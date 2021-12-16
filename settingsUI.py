@@ -55,6 +55,7 @@ class Ui_Einstellungen(object):
         self.NN_choose_drop = QtWidgets.QComboBox(self.centralwidget)
         self.NN_choose_drop.setMinimumSize(QtCore.QSize(550, 0))
         self.NN_choose_drop.setMaximumSize(QtCore.QSize(550, 16777215))
+        self.NN_choose_drop.setStyleSheet("color: rgb(105, 138, 147);")
         self.NN_choose_drop.setObjectName("NN_choose_drop")
         self.horizontalLayout.addWidget(self.NN_choose_drop)
         self.NN_choose = QtWidgets.QPushButton(self.centralwidget)
@@ -91,10 +92,12 @@ class Ui_Einstellungen(object):
         self.gridLayout_2.setVerticalSpacing(15)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.messsdaten_edit = QtWidgets.QLineEdit(self.centralwidget)
+        self.messsdaten_edit.setStyleSheet("color: rgb(105, 138, 147);")
         self.messsdaten_edit.setReadOnly(True)
         self.messsdaten_edit.setObjectName("messsdaten_edit")
         self.gridLayout_2.addWidget(self.messsdaten_edit, 0, 1, 1, 1)
         self.logdatei_edit = QtWidgets.QLineEdit(self.centralwidget)
+        self.logdatei_edit.setStyleSheet("color: rgb(105, 138, 147);")
         self.logdatei_edit.setReadOnly(True)
         self.logdatei_edit.setObjectName("logdatei_edit")
         self.gridLayout_2.addWidget(self.logdatei_edit, 1, 1, 1, 1)
@@ -204,6 +207,12 @@ class Ui_Einstellungen(object):
 
         self.retranslateUi(Einstellungen)
         QtCore.QMetaObject.connectSlotsByName(Einstellungen)
+        Einstellungen.setTabOrder(self.NN_choose_drop, self.NN_choose)
+        Einstellungen.setTabOrder(self.NN_choose, self.messsdaten_edit)
+        Einstellungen.setTabOrder(self.messsdaten_edit, self.messdaten_choose)
+        Einstellungen.setTabOrder(self.messdaten_choose, self.logdatei_edit)
+        Einstellungen.setTabOrder(self.logdatei_edit, self.logdatei_choose)
+        Einstellungen.setTabOrder(self.logdatei_choose, self.productlabel1edit)
         Einstellungen.setTabOrder(self.productlabel1edit, self.productlabel2edit)
         Einstellungen.setTabOrder(self.productlabel2edit, self.productlabel3edit)
         Einstellungen.setTabOrder(self.productlabel3edit, self.productlabel4edit)
@@ -213,6 +222,8 @@ class Ui_Einstellungen(object):
         Einstellungen.setTabOrder(self.productlabel2check, self.productlabel3check)
         Einstellungen.setTabOrder(self.productlabel3check, self.productlabel4check)
         Einstellungen.setTabOrder(self.productlabel4check, self.productlabel5check)
+        Einstellungen.setTabOrder(self.productlabel5check, self.save_button)
+        Einstellungen.setTabOrder(self.save_button, self.cancel_button)
 
     def retranslateUi(self, Einstellungen):
         _translate = QtCore.QCoreApplication.translate

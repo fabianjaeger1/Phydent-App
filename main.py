@@ -1,6 +1,8 @@
 # Main Python file for the Phydent Application
 import sys
+import os
 import subprocess
+
 from PyQt5.QtGui     import *
 from PyQt5.QtCore    import *
 from PyQt5.QtWidgets import *
@@ -23,6 +25,8 @@ import settingsUI
 import aboutUI 
 import loginUI
 
+import OPUS_communication
+
 
 class about(QMainWindow, aboutUI.Ui_MainWindow):
     def __init__(self, parent = None):
@@ -31,18 +35,23 @@ class about(QMainWindow, aboutUI.Ui_MainWindow):
 
 
 class settings(QMainWindow, settingsUI.Ui_Einstellungen):
+    settings_data = QSettings("Phytax", "Phydent")
     def __init__(self, parent = None):
+        settings_data = QSettings("Phytax", "Phydent")
         super(settings, self).__init__(parent)
         self.setupUi(self)
         
         self.readSettings()
         
+
+        
+        self.logdatei_edit.setText(settings_data.value("log_path"))
+        self.messsdaten_edit.setText(settings_data.value("data_path"))
         
         
     def readSettings(self):
-        settings = QSettings("Phytax", "Phydent")
-        position = settings.value("pos_settings", QPoint(200,200))
-        size = settings.value("size_settings", QSize(400,400))
+        position = self.settings_data.value("pos_settings", QPoint(200,200))
+        size = self.settings_data.value("size_settings", QSize(400,400))
         self.resize(size)
         self.move(position)
 
@@ -53,6 +62,7 @@ class settings(QMainWindow, settingsUI.Ui_Einstellungen):
     
     def closeEvent(self, event):
         self.writeSettings()
+        
     
     # def close_event(self,event):
     #     self.settings
@@ -92,12 +102,14 @@ class login(QMainWindow, loginUI.Ui_login):
         popwindow = mainwindow()
         popwindow.show()
         self.popups.append(popwindow)
-        w.hide()
+        w.close()
 
     def exit_app(self):
         sys.exit()
 
 class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
+    
+    settings_data = QSettings("Phytax", "Phydent")
     
     @staticmethod
     def valueToBool(value):
@@ -223,6 +235,7 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         self.loginwindow = login()
 
         self.startmeasurementbutton.clicked.connect(self.measurementstart)
+        self.backgroundbutton.clicked.connect(self.background_measurement_start)
         #self.actionEinstellungen.triggered.connect(self.open_settings)
 
         self.startmeasurementbutton_2.clicked.connect(self.exitapp)
@@ -241,6 +254,30 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
     def closeEvent(self, event):
         self.writeSettings()
         #print("Test")
+        
+    def select_data_path(self):
+        #settings = QSettings("Phytax", "Phydent")
+        #path = QFileDialog.getExistingDirectory(self, 'Select a Folder', '', 'All Files (*.*)')
+        #path = QFileDialog.getExistingDirectory(None, 'Select a Folder', )
+        dialog = QFileDialog()
+        folder_path = dialog.getExistingDirectory(None, "Select Folder")
+        
+        if folder_path != "":
+            self.settings_data.setValue("data_path", folder_path)
+            self.settingswindow.messsdaten_edit.setText(self.settings_data.value("data_path"))
+            print(folder_path)
+            self.settingswindow.__init__
+
+   
+    def select_log_path(self):
+        dialog = QFileDialog()
+        folder_path = dialog.getExistingDirectory(None, "Select Folder")
+
+        if folder_path != "":
+            self.settings_data.setValue("log_path", folder_path)
+            self.settingswindow.logdatei_edit.setText(self.settings_data.value("log_path"))
+            print(folder_path)
+            self.settingswindow.__init__
         
     def open_settingswindow(self, checked):
         self.settingswindow = settings()
@@ -293,6 +330,9 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         self.settingswindow.productlabel5edit.setStyleSheet("color: rgb(105, 138, 147);")
 
         
+        self.settingswindow.messdaten_choose.clicked.connect(self.select_data_path)
+        self.settingswindow.logdatei_choose.clicked.connect(self.select_log_path)
+        
         self.mainwindow_app.close()
         
     def go_back_settings(self):
@@ -301,6 +341,13 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         w = mainwindow()
         w.show()
         self.settingswindow.close()
+        
+    def background_measurement_start(self):
+        path = self.settings_data.value("data_path")
+        print(path)
+        OPUS_communication.opusrequest("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
+        # reference=OPUS.opusrequest("127.0.0.1", 80, "MeasureReference(0, {EXP='ATR_Di.XPM', XPP='/mnt/c/Users/G164.PHYTAX/Desktop/phydent/', NSR=10})")
+        print("Test")
         
     
     def save_application_settings(self):
@@ -510,6 +557,7 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
             sys.exit()
         
             # sys.exit()
+        
     
     def open_settings(self):
         popwindow = settings()
