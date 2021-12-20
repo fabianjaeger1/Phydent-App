@@ -24,7 +24,6 @@ def opusrequest_fireandforget(IP,port,command):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((IP,port))
     s.sendall(request.encode("windows-1252"))
-    #construct answer partially from "byte stream"
     s.close()
 
 def opusrequest(IP,port,command):
@@ -40,12 +39,15 @@ def opusrequest(IP,port,command):
     s.connect((IP,port))
     s.sendall(request.encode("windows-1252"))
     #construct answer partially from "byte stream"
-    while True:
-        part = s.recv(1048576)  # 2^20 bytes = 1 MByte        
-        if (part == b''):
-           break;
-        else:
-            data += part.decode("windows-1252")
+    part = s.recv(1048576)
+    if (part != b''):
+        data += part.decode("windows-1252 ")
+    # while True:
+    #     part = s.recv(1048576)  # 2^20 bytes = 1 MByte        
+    #     if (part == b''):
+    #        break;
+    #     else:
+    #         data += part.decode("windows-1252")
     #Close connection and provide answer as string    
     s.close()
     return(data.split("\n\r\n"))

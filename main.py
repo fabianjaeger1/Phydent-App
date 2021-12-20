@@ -25,8 +25,9 @@ import mainwindowUI
 import settingsUI
 import aboutUI 
 import loginUI
+import OPUS
 
-import OPUS_communication
+# import OPUS_communication
 
 
 class about(QMainWindow, aboutUI.Ui_MainWindow):
@@ -68,9 +69,12 @@ class settings(QMainWindow, settingsUI.Ui_Einstellungen):
 
 class measurement(QMainWindow, measurementUI.Ui_MainWindow):
 
+    class_instantiated = False
+
     def __init__(self, parent=None):
         super(measurement, self).__init__(parent)
         self.setupUi(self)
+        self.class_instantiated = True
 
         # self.productlabel1edit.setText(self.productlabel1var)  
         # self.productlabel2edit.setText(self.productlabel2var)
@@ -140,18 +144,63 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
     def valueToBool(value):
         return value.lower() == 'true' if isinstance(value, str) else bool(value)
 
+    def writelastbackground_measurement(self):
+        settings = QSettings("Phytax", "Phydent")
+        current_time = time.ctime()
+        settings.setValue("last_bckgr", "Letzte Hintergrundmessung: {}".format(current_time))
+        self.lastbackgroundmeasurementlabel.setText(settings.value("last_bckgr"))
+        #self.lastbackgroundmeasurementlabel.update()
+        self.startmeasurementbutton.setEnabled(True)
+        self.backgroundbutton.setEnabled(True)
+        #self.__init__
+
     def background_measurement_start(self):
         settings = QSettings("Phytax", "Phydent")
         path = settings.value("data_path")
         print(path)
-        OPUS_communication.opusrequest_fireandforget("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
-        #OPUS_communication.opusrequest("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
+        # Create thread object
+        self.backgroundbutton.setEnabled(False)
+        self.startmeasurementbutton.setEnabled(False)
+        self.thread = QThread()
+        # Create worker object, Instantiate class
+        self.worker = OPUS.OPUS_coms()
+        self.worker.path = path
+        # Move worker to the thread
+        self.worker.moveToThread(self.thread)
+        # Connect signals and slots
+        self.thread.started.connect(self.worker.run)
+        #self.thread.started.connect(self.worker.opusrequest("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})"))
+        #self.thread.started.connect(self.worker.opusrequest_fireandforget("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path)))
+        self.worker.finished.connect(self.thread.quit)
+        #self.worker.finished.connect(self.worker.deleteLater)
+        #self.thread.finished.connect(self.thread.deleteLater)
+        #self.worker.progress.connect(self.r)
+        self.thread.start()
+
+        # self.thread.finished.connect(
+        #     lambda: self.lastbackgroundmeasurementlabel.setText("Test")
+        # )S
+
+        self.thread.finished.connect(
+           self.writelastbackground_measurement
+        )
+        
+        #if self.thread.isFinished == True:
+            #print("thread is finished")
+
+        # self.backgroundbutton.setEnabled(False)
+        # self.thread.finished.connect(
+        #     lambda: self.backgroundbutton.setEnabled(True)
+        # )
+        #OPUS_communication.opusrequest_fireandforget("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
+        # OPUS_communication.opusrequest("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
         current_time = time.ctime()
-        print(current_time)
-        settings.setValue("last_bckgr", "Letzte Hintergrundmessung: {}".format(current_time))
-        #self.mainapplication.__init__
-        self.lastbackgroundmeasurementlabel.setText(settings.value("last_bckgr"))
-        self.lastbackgroundmeasurementlabel.update()
+
+        # print(current_time)
+        # settings.setValue("last_bckgr", "Letzte Hintergrundmessung: {}".format(current_time))
+        # #self.mainapplication.__init__
+        # self.lastbackgroundmeasurementlabel.setText(settings.value("last_bckgr"))
+        # self.lastbackgroundmeasurementlabel.update()
         #self.__init__
     
     def readSettings(self):
@@ -239,7 +288,6 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
             self.productlabel5.setText("")
             self.productlabel5edit.setReadOnly(True)
             
-        
     
     def writeSettings(self):
         settings = QSettings("Phytax", "Phydent")
@@ -462,7 +510,6 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
     #         self.settingswindow.hide()
     #     else:
     #         self.settingswindow.show()
-
     # def toggle_measurementwindow(self, checked):
     #     if self.measurementwindow.isVisible():
     #         self.measurementwindow.hide()
@@ -573,14 +620,32 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         #print(self.popups)
     
     def exitapp(self):
-        if self.measurementwindow.isVisible():
-            # dlg = QDialog(self)
-            # dlg.setWindowTitle("Test")
-            # dlg.label = QLabel
-            # dlg.exec()
+
+        #  self.measurementwindow.isVisible():
+        # if measurement.class_instantiated == True:
+        #     # dlg = QDialog(self)
+        #     # dlg.setWindowTitle("Test")
+        #     # dlg.label = QLabel
+        #     # dlg.exec()
+        #     dlg = QMessageBox(self)
+        #     dlg.setWindowTitle("Test")
+        #     dlg.setText("Eine Messung ist momentan am Laufen, wollen Sie die Anwendung wirklich schliessen")
+        #     dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        #     #dlg.addButton("test")
+        #     dlg.button
+        #     dlg.setIcon(QMessageBox.Information)
+        #     button = dlg.exec()
+
+        #     if button == QMessageBox.Yes:
+        #         print("Close Application")
+        #         os.system("TASKKILL /F /IM opus.exe")
+        #         sys.exit()
+        #     else:
+        #         print("Close Dialog")
+        #         dlg.close()
+        if self.thread.isRunning() == True:
             dlg = QMessageBox(self)
-            dlg.setWindowTitle("Test")
-            dlg.setText("Eine Messung ist momentan am Laufen, wollen Sie die Anwendung wirklich schlissen")
+            dlg.setText("Eine Hintergrundmessung ist momentan am Laufen, wollen Sie die Anwendung wirklich schliessen")
             dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
             #dlg.addButton("test")
             dlg.button
@@ -589,11 +654,14 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
 
             if button == QMessageBox.Yes:
                 print("Close Application")
+                os.system("TASKKILL /F /IM opus.exe")
                 sys.exit()
             else:
                 print("Close Dialog")
                 dlg.close()
-        else:
+        
+        elif self.thread.isRunning() == False:
+            os.system("TASKKILL /F /IM opus.exe")
             sys.exit()
         
             # sys.exit()
