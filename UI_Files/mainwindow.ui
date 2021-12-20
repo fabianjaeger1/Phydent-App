@@ -424,7 +424,7 @@
          <string notr="true">color: rgb(0, 94, 135);</string>
         </property>
         <property name="text">
-         <string>Exit</string>
+         <string>Schliessen</string>
         </property>
        </widget>
       </item>

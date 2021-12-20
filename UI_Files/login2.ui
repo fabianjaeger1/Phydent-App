@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>599</width>
-    <height>387</height>
+    <height>390</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -96,7 +96,7 @@
          <string notr="true">color: rgb(0, 94, 135);</string>
         </property>
         <property name="text">
-         <string>Exit</string>
+         <string>Schliessen</string>
         </property>
        </widget>
       </item>
@@ -166,7 +166,7 @@
        </font>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;OPUS Login Daten&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;OPUS Login&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
@@ -242,22 +242,6 @@
         </property>
         <property name="text">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Benutzername:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QCheckBox" name="remember_me">
-        <property name="font">
-         <font>
-          <family>Source Sans Pro</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(105, 138, 147);</string>
-        </property>
-        <property name="text">
-         <string>Remember me</string>
         </property>
        </widget>
       </item>

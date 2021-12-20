@@ -145,7 +145,7 @@
          </font>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Produktinformationen&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Produktinformation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -160,7 +160,7 @@
          </font>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Log Prompt&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Status&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -233,30 +233,25 @@
          <number>12</number>
         </property>
         <property name="verticalSpacing">
-         <number>3</number>
+         <number>6</number>
         </property>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="classname">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>40</height>
-           </size>
-          </property>
+        <item row="0" column="2">
+         <widget class="QLabel" name="confidence_label">
           <property name="maximumSize">
            <size>
             <width>16777215</width>
-            <height>40</height>
+            <height>30</height>
            </size>
           </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
+          <property name="font">
+           <font>
+            <family>Source Sans Pro</family>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
           </property>
           <property name="text">
-           <string/>
-          </property>
-          <property name="readOnly">
-           <bool>true</bool>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Konfidenz&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -305,26 +300,6 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="confidence_label">
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Source Sans Pro</family>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Konfidenz&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-         </widget>
-        </item>
         <item row="2" column="0" alignment="Qt::AlignHCenter">
          <widget class="QLabel" name="identification_image">
           <property name="minimumSize">
@@ -362,22 +337,63 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="classname">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
      </layout>
     </item>
     <item>
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
+     <layout class="QHBoxLayout" name="buttonsection_2">
+      <property name="spacing">
+       <number>0</number>
       </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
+      <property name="leftMargin">
+       <number>0</number>
       </property>
-     </spacer>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QCheckBox" name="checkBox">
+        <property name="font">
+         <font/>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(105, 138, 147);</string>
+        </property>
+        <property name="text">
+         <string>Kommentar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit"/>
+      </item>
+     </layout>
     </item>
     <item>
      <layout class="QHBoxLayout" name="buttonsection">
@@ -445,6 +461,19 @@
        </widget>
       </item>
      </layout>
+    </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>

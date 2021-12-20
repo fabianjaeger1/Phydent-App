@@ -62,6 +62,29 @@ class settings(QMainWindow, settingsUI.Ui_Einstellungen):
     
     def closeEvent(self, event):
         self.writeSettings()
+        # result = isinstance(self.thread, QThread)
+        # print("The background_measurement exists: {}".format(result))
+        # if self.background_measurement_thread == True:
+        #     dlg = QMessageBox(self)
+        #     dlg.setText("Eine Hintergrundmessung ist momentan am Laufen, wollen Sie die Anwendung wirklich schliessen")
+        #     dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        #     #dlg.addButton("test")
+        #     dlg.button
+        #     dlg.setIcon(QMessageBox.Information)
+        #     button = dlg.exec()
+
+        #     if button == QMessageBox.Yes:
+        #         print("Close Application")
+        #         os.system("TASKKILL /F /IM opus.exe")
+        #         sys.exit()
+        #     else:
+        #         print("Close Dialog")
+        #         dlg.close()
+        
+        # else:
+        #     os.system("TASKKILL /F /IM opus.exe")
+        #     sys.exit()
+        
         
     
     # def close_event(self,event):
@@ -96,6 +119,7 @@ class login(QMainWindow, loginUI.Ui_login):
         self.loginbutton.clicked.connect(self.login)
         self.exitbutton.clicked.connect(self.exit_app)
         self.mainapplication = mainwindow()
+        
         #self.mainapplication.backgroundbutton.clicked.connect(self.background_measurement_start)
         #self.popups = []
 
@@ -139,6 +163,7 @@ class login(QMainWindow, loginUI.Ui_login):
 class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
     
     settings_data = QSettings("Phytax", "Phydent")
+    background_measurement_thread = False
     
     @staticmethod
     def valueToBool(value):
@@ -150,8 +175,11 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         settings.setValue("last_bckgr", "Letzte Hintergrundmessung: {}".format(current_time))
         self.lastbackgroundmeasurementlabel.setText(settings.value("last_bckgr"))
         #self.lastbackgroundmeasurementlabel.update()
+        self.actionEinstellungen.setEnabled(True)
         self.startmeasurementbutton.setEnabled(True)
+        self.backgroundbutton.setText("Hintergrundmessung")
         self.backgroundbutton.setEnabled(True)
+        self.background_measurement_thread = False
         #self.__init__
 
     def background_measurement_start(self):
@@ -159,9 +187,13 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         path = settings.value("data_path")
         print(path)
         # Create thread object
+        # self.statusBar.showMessage("Hintegrundmessung in Fortschritt")
         self.backgroundbutton.setEnabled(False)
+        self.backgroundbutton.setText("Hintergrundmessung läuft")
         self.startmeasurementbutton.setEnabled(False)
+        self.actionEinstellungen.setEnabled(False)
         self.thread = QThread()
+        self.background_measurement_thread = True
         # Create worker object, Instantiate class
         self.worker = OPUS.OPUS_coms()
         self.worker.path = path
@@ -298,6 +330,8 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         settings = QSettings("Phytax", "Phydent")
         self.mainwindow_app = super(mainwindow, self)
         self.mainwindow_app.__init__(parent)
+        self.statusBar = QStatusBar()
+        self.setStatusBar(self.statusBar)
         self.setupUi(self)
 
         # showTitle = self.valueToBool(settings.value('Settings/showTitle', True))
@@ -643,7 +677,10 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         #     else:
         #         print("Close Dialog")
         #         dlg.close()
-        if self.thread.isRunning() == True:
+        self.writeSettings()
+        result = isinstance(self.thread, QThread)
+        print("The background_measurement exists: {}".format(result))
+        if self.background_measurement_thread == True:
             dlg = QMessageBox(self)
             dlg.setText("Eine Hintergrundmessung ist momentan am Laufen, wollen Sie die Anwendung wirklich schliessen")
             dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
@@ -660,13 +697,11 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
                 print("Close Dialog")
                 dlg.close()
         
-        elif self.thread.isRunning() == False:
+        else:
             os.system("TASKKILL /F /IM opus.exe")
             sys.exit()
         
             # sys.exit()
-        
-    
     def open_settings(self):
         popwindow = settings()
         popwindow.show()
@@ -709,6 +744,7 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
 if __name__ == "__main__":
     import sys
     app = QApplication(sys.argv)
+    app.setStyle('Fusion')
     w = login()
     w.show()
     sys.exit(app.exec_())

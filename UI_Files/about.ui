@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>485</width>
-    <height>396</height>
+    <width>506</width>
+    <height>404</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -63,7 +63,7 @@ p, li { white-space: pre-wrap; }
        </font>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Version 1.0.0&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Phython 3.8.6&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Version 1.0.0&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Python 3.8.6&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -81,7 +81,7 @@ p, li { white-space: pre-wrap; }
        </font>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Kontakt Informationen:&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Phytax GmbH Wagistrasse 23, 8952 Schlieren&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;+41 43 495 04 30&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Kontakt:&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Phytax GmbH Wagistrasse 23, 8952 Schlieren, Schweiz&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Email: info@phytax.ch&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Telefon: +41 43 495 04 30&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
