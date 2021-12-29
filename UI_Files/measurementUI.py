@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1040, 861)
+        MainWindow.resize(963, 902)
         font = QtGui.QFont()
         font.setFamily("Source Sans Pro")
         font.setPointSize(12)
@@ -110,7 +110,7 @@ class Ui_MainWindow(object):
         self.spectrumlabel.setFont(font)
         self.spectrumlabel.setObjectName("spectrumlabel")
         self.spectrumsection.addWidget(self.spectrumlabel)
-        self.graphicsView = QtWidgets.QGraphicsView(self.centralwidget)
+        self.graphicsView = plotwidget(self.centralwidget)
         self.graphicsView.setMinimumSize(QtCore.QSize(250, 250))
         self.graphicsView.setObjectName("graphicsView")
         self.spectrumsection.addWidget(self.graphicsView)
@@ -227,7 +227,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addItem(spacerItem1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1040, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 963, 21))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -264,6 +264,7 @@ class Ui_MainWindow(object):
         self.checkBox.setText(_translate("MainWindow", "Kommentar"))
         self.printbutton.setText(_translate("MainWindow", "Drucken"))
         self.backbutton.setText(_translate("MainWindow", "Zurück"))
+from pyqtgraph import plotwidget
 
 
 if __name__ == "__main__":

@@ -3,11 +3,14 @@ import sys
 import os
 import time
 import subprocess
+from typing import Text
 
 from PyQt5.QtGui     import *
 from PyQt5.QtCore    import *
 from PyQt5.QtWidgets import *
 from PyQt5.uic.uiparser import QtWidgets
+import pyqtgraph as pg
+from pyqtgraph import PlotWidget , plot
 
 from PyQt5.QtWidgets import QDialog, QMainWindow
 
@@ -111,6 +114,8 @@ class measurement(QMainWindow, measurementUI.Ui_MainWindow):
 
 class login(QMainWindow, loginUI.Ui_login):
     settings_data = QSettings("Phytax", "Phydent")
+    toplist = []
+    winlist = []
 
     def __init__(self, parent=None):
         super(login, self).__init__(parent)
@@ -119,19 +124,26 @@ class login(QMainWindow, loginUI.Ui_login):
         self.loginbutton.clicked.connect(self.login)
         self.exitbutton.clicked.connect(self.exit_app)
         self.mainapplication = mainwindow()
+
         
         #self.mainapplication.backgroundbutton.clicked.connect(self.background_measurement_start)
         #self.popups = []
-
-    #@QtCore.pyqtSlot()
+    def enum_callback(self,hwnd, results):
+        self.winlist.append((hwnd, win32gui.GetWindowText(hwnd)))
     def login(self):
         # print("clicked")
         user = self.userinput.text()
         password = self.passinput.text()
+
         path_to_opus = 'C:\Program Files\Bruker\OPUS_8.7.10/opus.exe'
         subprocess.Popen(['C:\Program Files\Bruker\OPUS_8.7.10/opus.exe','/Language=ENGLISH/OPUSPIPE=ON/HTTPSERVER=ON/HTTPPORT=80/DIRECTLOGINPASSWORD={}@{}'.format(user, password)])
+
+        # win32gui.EnumWindows(self.enum_callback, self.toplist)
+        # opus = [(hwnd, title) for hwnd, title in self.winlist if 'opus' in title.lower()]
+        # win32gui.ShowWindow(opus[0], win32con.SW_MINIMIZE)
+                
         # popwindow = mainwindow()
-        
+        #time.sleep(3)
 
         self.mainapplication.show()
         #self.popups.append(popwindow)
@@ -226,7 +238,7 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         # )
         #OPUS_communication.opusrequest_fireandforget("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
         # OPUS_communication.opusrequest("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path))
-        current_time = time.ctime()
+        
 
         # print(current_time)
         # settings.setValue("last_bckgr", "Letzte Hintergrundmessung: {}".format(current_time))
@@ -389,6 +401,7 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         #path = QFileDialog.getExistingDirectory(None, 'Select a Folder', )
         dialog = QFileDialog()
         folder_path = dialog.getExistingDirectory(None, "Select Folder")
+        #folder_path = r"{}".format(folder_path)
         
         if folder_path != "":
             self.settings_data.setValue("data_path", folder_path)
@@ -553,13 +566,28 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
     def go_back(self):
         self.measurementwindow.close()
         self.mainwindow_app.show()
+
+    def progress_measurement(self,value):
+        if value == 1:
+            self.measurementwindow.logPrompt.append("[{}]: Vorverarbeitung des Spektrums".format(self.gettime()))
+        else:
+            print("failed")
         
 
     def measurementstart(self):
+        
         settings = QSettings("Phytax", "Phydent")
         
          # Instantiate measurement class 
         self.measurementwindow = measurement()
+
+        text_start_prompt = "[{}]: Messung gestartet".format(self.gettime())
+        #self.measurementwindow.logPrompt.setText("Messung gestartet...")
+        self.measurementwindow.logPrompt.setStyleSheet("color : gray;")
+        self.measurementwindow.logPrompt.setText(text_start_prompt)
+        self.measurementwindow.logPrompt.setReadOnly(True)
+
+
         
         productlabel1 = self.productlabel1edit.text()
         productlabel2 = self.productlabel2edit.text()
@@ -651,7 +679,47 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         self.measurementwindow.show()
         #self.popups.append(self.measurementwindow)
         self.mainwindow_app.hide()
+
+        
+        self.thread = QThread()
+        # Create worker object, Instantiate class
+        self.worker = OPUS.OPUS_measurement()
+
+        settings = QSettings("Phytax", "Phydent")
+        path = settings.value("data_path")
+        self.worker.target_path = path
+        # Move worker to the thread
+        self.worker.moveToThread(self.thread)
+        # Connect signals and slots
+        self.thread.started.connect(self.worker.run)
+        #self.thread.started.connect(self.worker.opusrequest("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})"))
+        #self.thread.started.connect(self.worker.opusrequest_fireandforget("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path)))
+        self.worker.progress.connect(self.progress_measurement)
+        self.worker.finished.connect(self.thread.quit)
+        #self.worker.finished.connect(self.worker.deleteLater)
+        #self.thread.finished.connect(self.thread.deleteLater)
+        #self.worker.progress.connect(self.r)
+        self.thread.start()
+
+        # self.thread.finished.connect(
+        #     lambda: self.lastbackgroundmeasurementlabel.setText("Test")
+        # )S
+
+        self.thread.finished.connect(
+            self.updatelog
+        )
+        
+    def updatelog(self):
+        text_log_finished = "[{}]: Messung abgeschlossen".format(self.gettime())
+        #self.measurementwindow.logPrompt.append("Messung abgeschlossen")
+        self.measurementwindow.logPrompt.append(text_log_finished)
+        
         #print(self.popups)
+
+    def gettime(self):
+        t = time.localtime()
+        current_time = time.strftime("%H:%M:%S", t)
+        return current_time
     
     def exitapp(self):
 
@@ -744,10 +812,11 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
 if __name__ == "__main__":
     import sys
     app = QApplication(sys.argv)
-    app.setStyle('Fusion')
+    #app.setStyle('Fusion')
     w = login()
     w.show()
     sys.exit(app.exec_())
+
 
 
 
