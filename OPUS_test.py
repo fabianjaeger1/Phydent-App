@@ -38,18 +38,6 @@ def opusrequest(IP,port,command):
 #command = opusrequest("127.0.0.1", 80,"MeasureSample(0, {{EXP='ATR_Di.XPM', XPP='{}\\XPM', NSR=10}})".format(workdir))
 #command = opusrequest("127.0.0.1", 80,"MeasureSample(0, {EXP='ATR_Di.XPM', XPP='C:\\User\\G164.PHYTAX\\Desktop\\Phydent-App\\XPM\\', NSR#=10})")
 
-def str_to_class(classname):
-    return getattr(sys.modules[__name__], classname)
-
-def test2():
-    for i in range(1,5):
-        print(i)
-        arr = []
-        text = "checkbox_" + "{}".format(i)
-        text = str_to_class(text)
-        arr[i] = text
-test2()
-
 
 def get_x_values(path_leermessung, host, port):
 

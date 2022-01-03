@@ -3,12 +3,15 @@ import sys
 import os
 import time
 import subprocess
+import numpy as np
+import pandas as pd
 from typing import Text
 
 from PyQt5.QtGui     import *
 from PyQt5.QtCore    import *
 from PyQt5.QtWidgets import *
 from PyQt5.uic.uiparser import QtWidgets
+import numpy
 import pyqtgraph as pg
 from pyqtgraph import PlotWidget , plot
 
@@ -97,10 +100,11 @@ class measurement(QMainWindow, measurementUI.Ui_MainWindow):
 
     class_instantiated = False
 
-    def __init__(self, parent=None):
+    def __init__(self,parent=None):
         super(measurement, self).__init__(parent)
         self.setupUi(self)
         self.class_instantiated = True
+
 
         # self.productlabel1edit.setText(self.productlabel1var)  
         # self.productlabel2edit.setText(self.productlabel2var)
@@ -180,6 +184,10 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
     @staticmethod
     def valueToBool(value):
         return value.lower() == 'true' if isinstance(value, str) else bool(value)
+    
+    # def refreshUI(self):
+    #     self.mainwindow_app
+
 
     def writelastbackground_measurement(self):
         settings = QSettings("Phytax", "Phydent")
@@ -220,7 +228,6 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         #self.thread.finished.connect(self.thread.deleteLater)
         #self.worker.progress.connect(self.r)
         self.thread.start()
-
         # self.thread.finished.connect(
         #     lambda: self.lastbackgroundmeasurementlabel.setText("Test")
         # )S
@@ -271,6 +278,13 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
             productlabel1 = settings.value("productlabel1")
             self.productlabel1.setText(productlabel1)
             self.productlabel1.setStyleSheet("color: rgb(105, 138, 147);")
+            self.productlabel1edit.setReadOnly(False)
+            self.productlabel1edit.setStyleSheet("QLineEdit"
+                                        "{"
+                                        "background : white;"
+                                        "color : gray;"
+                                        "}")
+        
         else:
             self.productlabel1edit.setStyleSheet("QLineEdit"
                                             "{"
@@ -284,6 +298,12 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
             productlabel2 = settings.value("productlabel2")
             self.productlabel2.setText(productlabel2)
             self.productlabel2.setStyleSheet("color: rgb(105, 138, 147);")
+            self.productlabel2edit.setReadOnly(False)
+            self.productlabel2edit.setStyleSheet("QLineEdit"
+                                    "{"
+                                    "background : white;"
+                                    "color : gray;"
+                                    "}")
         else:
             self.productlabel2edit.setStyleSheet("QLineEdit"
                                             "{"
@@ -297,6 +317,12 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
             productlabel3 = settings.value("productlabel3")
             self.productlabel3.setText(productlabel3)
             self.productlabel3.setStyleSheet("color: rgb(105, 138, 147);")
+            self.productlabel3edit.setReadOnly(False)
+            self.productlabel3edit.setStyleSheet("QLineEdit"
+                                    "{"
+                                    "background : white;"
+                                    "color : gray;"
+                                    "}")
         else:
             self.productlabel3edit.setStyleSheet("QLineEdit"
                                             "{"
@@ -310,6 +336,12 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
             productlabel4 = settings.value("productlabel4")
             self.productlabel4.setText(productlabel4)
             self.productlabel4.setStyleSheet("color: rgb(105, 138, 147);")
+            self.productlabel4edit.setReadOnly(False)
+            self.productlabel4edit.setStyleSheet("QLineEdit"
+                                    "{"
+                                    "background : white;"
+                                    "color : gray;"
+                                    "}")
         else:
             self.productlabel4edit.setStyleSheet("QLineEdit"
                                             "{"
@@ -323,6 +355,12 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
             productlabel5 = settings.value("productlabel5")
             self.productlabel5.setText(productlabel5)
             self.productlabel5.setStyleSheet("color: rgb(105, 138, 147);")
+            self.productlabel5edit.setReadOnly(False)
+            self.productlabel5edit.setStyleSheet("QLineEdit"
+                                    "{"
+                                    "background : white;"
+                                    "color : gray;"
+                                    "}")
         else:
             self.productlabel5edit.setStyleSheet("QLineEdit"
                                             "{"
@@ -474,13 +512,16 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         self.settingswindow.messdaten_choose.clicked.connect(self.select_data_path)
         self.settingswindow.logdatei_choose.clicked.connect(self.select_log_path)
         
+
+        #self.mainwindow_app.hide()
         self.mainwindow_app.close()
         
     def go_back_settings(self):
         
-    
-        w = mainwindow()
-        w.show()
+        print(self.thread)
+        # w = mainwindow()
+        # w.show()
+        self.mainwindow_app.show()
         self.settingswindow.close()
         
         
@@ -541,8 +582,24 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
             settings.setValue("productlabel5", self.settingswindow.productlabel5edit.text())
             print("Value prodlabel5_checked saved as false")
             
-        w = mainwindow()
-        w.show()
+        # self.mainwindow_app.__init__
+        # self.mainwindow_app.setupUi
+        # self.productlabel1.update()
+        # self.productlabel1.hide()
+        # self.productlabel1.show()
+
+        """ALTERNATIVE FIX TO QTHREAD PROBLEM (HIDE/SHOW with restart on settings change)"""
+        # cwdir = os.getcwd()
+        # os.system("TASKKILL /F /IM opus.exe")
+        # os.system('python "{}/main.py"'.format(cwdir))
+        
+
+        #sys.exit()
+        # self.show()
+        self.mainwindow_app.show()
+        self.readSettings()
+        # w = mainwindow()
+        # w.show()
         self.settingswindow.close()
         
     
@@ -564,36 +621,50 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
     #         self.measurementwindow.show()
 
     def go_back(self):
-        self.measurementwindow.close()
+        self.measurementwindow.hide()
         self.mainwindow_app.show()
 
-    def progress_measurement(self,value):
-        if value == 1:
-            self.measurementwindow.logPrompt.append("[{}]: Vorverarbeitung des Spektrums".format(self.gettime()))
-        else:
-            print("failed")
+    # def plot_spectra(self):
+        
+
+    # def progress_measurement(self,value):
+    #         self.measurementwindow.logPrompt.append("[{}]: Vorverarbeitung des Spektrums".format(self.gettime()))
+    #         self.plot_spectra()
         
 
     def measurementstart(self):
         
         settings = QSettings("Phytax", "Phydent")
+        path = settings.value("data_path")
         
          # Instantiate measurement class 
         self.measurementwindow = measurement()
+
+        #new class
+        #self.measurementwindow = measurement(productlabel1, productlabel2, productlabel3)
 
         text_start_prompt = "[{}]: Messung gestartet".format(self.gettime())
         #self.measurementwindow.logPrompt.setText("Messung gestartet...")
         self.measurementwindow.logPrompt.setStyleSheet("color : gray;")
         self.measurementwindow.logPrompt.setText(text_start_prompt)
         self.measurementwindow.logPrompt.setReadOnly(True)
-
-
+        self.measurementwindow.graphicsView.setBackground("w")
+        #self.measurementwindow.graphicsView.plot(hour,temperature)
+ 
         
         productlabel1 = self.productlabel1edit.text()
         productlabel2 = self.productlabel2edit.text()
         productlabel3 = self.productlabel3edit.text()
         productlabel4 = self.productlabel4edit.text()
         productlabel5 = self.productlabel5edit.text()
+
+
+        #productlabels = [productlabel1, productlabel2, productlabel3, productlabel4, productlabel5]
+       # productlabeledits = [productlabel1edit,productlabel2edit,productlabel3edit,productlabel4edit,productlabel5edit]
+        
+        #for i,edit in enumerate(productlabeledits):
+            
+
         
         
         productlabel1_check = self.valueToBool(settings.value("productlabel1check", False))
@@ -679,22 +750,21 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         self.measurementwindow.show()
         #self.popups.append(self.measurementwindow)
         self.mainwindow_app.hide()
-
         
-        self.thread = QThread()
+        self.thread = QThread(self.measurementwindow)
         # Create worker object, Instantiate class
         self.worker = OPUS.OPUS_measurement()
 
-        settings = QSettings("Phytax", "Phydent")
-        path = settings.value("data_path")
         self.worker.target_path = path
+
+        #self.worker.target_path = path
         # Move worker to the thread
         self.worker.moveToThread(self.thread)
         # Connect signals and slots
         self.thread.started.connect(self.worker.run)
         #self.thread.started.connect(self.worker.opusrequest("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})"))
         #self.thread.started.connect(self.worker.opusrequest_fireandforget("127.0.0.1", 80, "MeasureReference(0, {{EXP='ATR_Di.XPM', XPP={}, NSR=10}})".format(path)))
-        self.worker.progress.connect(self.progress_measurement)
+        #self.worker.progress.connect(self.progress_measurement)
         self.worker.finished.connect(self.thread.quit)
         #self.worker.finished.connect(self.worker.deleteLater)
         #self.thread.finished.connect(self.thread.deleteLater)
@@ -703,16 +773,49 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
 
         # self.thread.finished.connect(
         #     lambda: self.lastbackgroundmeasurementlabel.setText("Test")
-        # )S
+        # )
 
         self.thread.finished.connect(
             self.updatelog
         )
         
     def updatelog(self):
+        print('arrived')
         text_log_finished = "[{}]: Messung abgeschlossen".format(self.gettime())
+
         #self.measurementwindow.logPrompt.append("Messung abgeschlossen")
         self.measurementwindow.logPrompt.append(text_log_finished)
+
+        self.measurementwindow.logPrompt.append("[{}]: Vorverarbeitung des Spektrums".format(self.gettime()))
+        np.set_printoptions(precision = 3, suppress = True)
+        cwdir = os.getcwd()
+        spectrum_data = pd.read_csv("{}/spectra_csv/spectra_pre.csv".format(cwdir))
+        x_values = spectrum_data.copy() 
+        x_values = x_values.drop(['Filename',"Product","Dataset","Augmented"], inplace = True, axis = 1)
+
+        x_points = []
+        with open('{}/spectra_csv/x_points.txt'.format(cwdir), 'r') as filehandle:
+            for line in filehandle:
+                currentPlace = line[:-1]
+                x_points.append(currentPlace)
+        x_points = [float(x) for x in x_points]
+        #I believe the points are reversed
+        #x_points.reverse()
+
+        spectrum_data.drop("Filename", inplace = True, axis=1)
+        spectrum_data.drop("Product", inplace = True, axis=1)
+        spectrum_data.drop("Dataset", inplace = True, axis=1)
+        spectrum_data.drop("Augmented", inplace = True, axis=1)
+   
+        # print(spectrum_data)
+        spectrum_data = np.array(spectrum_data)
+        spectrum_data = spectrum_data[0].tolist()
+        # print(spectrum_data)
+        # print(x_points)
+        # print(len(x_points), len(spectrum_data))
+        #self.measurementwindow.graphicsView.plot(hour,temperature)
+        curve = self.measurementwindow.graphicsView.plot(x_points,spectrum_data)
+        curve.getViewBox().invertX(True)
         
         #print(self.popups)
 

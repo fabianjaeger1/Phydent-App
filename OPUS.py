@@ -43,7 +43,7 @@ class OPUS_measurement(QThread):
 
     host = "127.0.0.1"
     port = 80
-    target_path = ''
+    target_path = "C:\\Users\\G164\\Desktop"
     new_file_name = 'test'
     path_leermessung = "K:\\Phydent\\V22celinetest\\Leermessungen\\Leermessung.0"
 
@@ -61,6 +61,11 @@ class OPUS_measurement(QThread):
         nr_points, upperx, lowerx, data_processed = data[0], data[1], data[2], data[4:]
         delta_x = (upperx - lowerx)/(nr_points-1)
         x_points = list(reversed([lowerx + x*delta_x for x in range(int(nr_points))]))
+        #x_points = list([lowerx + x*delta_x for x in range(int(nr_points))])
+        cwdir = os.getcwd()
+        with open('{}/spectra_csv/x_points.txt'.format(cwdir), 'w') as filehandle:
+            for point in x_points:
+                filehandle.write('%s\n' % point)
         unload = self.opusrequest(host, port, "UNLOAD_FILE %s" % str(path_leermessung))
 
         return x_points, len(x_points), lowerx, delta_x
@@ -167,6 +172,8 @@ class OPUS_measurement(QThread):
         print("Thread created")
 
     def run(self):
+        cwdir = os.getcwd()
+        
         """Obtain the x-values from the Leermessung"""
         x_values_leer, _, lowerx_leer, deltax_leer = self.get_x_values(self.path_leermessung, self.host, self.port)
 
@@ -174,23 +181,30 @@ class OPUS_measurement(QThread):
         csvlist_pre = self.load_csvfile(x_values_leer)
         csvlist_raw = self.load_csvfile(x_values_leer)
 
-        answer= self.opusrequest("127.0.0.1", 80, "COMMAND_LINE LoadFile('/mnt/c/Users/G164.PHYTAX/Desktop/phydent/Leermessung.0', WARNING)")
-        command = self.opusrequest("127.0.0.1", 80, "MeasureSample(0, {EXP='ATR_Di.XPM', XPP='C:\\Users\\G164\\Desktop', NSS=1)")
+        # answer= self.opusrequest("127.0.0.1", 80, "COMMAND_LINE LoadFile('/mnt/c/Users/G164.PHYTAX/Desktop/phydent/Leermessung.0', WARNING)")
+        command = self.opusrequest("127.0.0.1", 80, "MeasureSample(0, {EXP='ATR_Di_Phydent.XPM', XPP='C:\\Users\\G164\\Desktop\\Phydent-App\\XPM\\ATR_Di_Phydent.XPM', NSS=24)")
         #print(command)
+        time.sleep(10)
         #Obtain information about selected/just measured spectrum
         filenames= self.opusrequest("127.0.0.1", 80,"GET_SELECTED")
+        print(filenames)
         #Extract absolute path to file
         file_path =  '{}'.format(filenames[1])
 
         #Save the file into the appropriate Phydent Folder
         save = self.opusrequest("127.0.0.1", 80, "SaveAs([%s], {SAN=%s, DAP='%s'})" % (file_path, self.new_file_name, self.target_path))
-
-        self.progress.emit(1)
+        
         spectra_raw, spectra_pre = self.load_preprocess_spectra(file_path,csvlist_raw, csvlist_pre, x_values_leer, lowerx_leer, deltax_leer)
         #spectra_raw, spectra_pre = self.load_preprocess_spectra(file_path,csvlist_raw, csvlist_pre, x_values_leer, lowerx_leer, deltax_leer)
-        spectra_pre.to_csv('{}/spectra_pre.csv'.format(self.target_path), index=False)
-        spectra_raw.to_csv('{}/spectra_raw.csv'.format(self.target_path), index=False)
+        spectra_pre.to_csv('{}/spectra_csv/spectra_pre.csv'.format(cwdir), index=False)
+        spectra_raw.to_csv('{}/spectra_csv/spectra_raw.csv'.format(cwdir), index=False)
 
+        self.progress.emit(1)
+        #time.sleep(15)
+        # spectra_pre.to_csv('{}/spectra_pre.csv'.format(self.target_path), index=False)
+        # spectra_raw.to_csv('{}/spectra_raw.csv'.format(self.target_path), index=False)
+        '''Plot Data'''
+  
         self.finished.emit()
         # spectra_pre.to_csv(self.target_path, index=False)
         # spectra_raw.to_csv(self.target_path, index=False)
