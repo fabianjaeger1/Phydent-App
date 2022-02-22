@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>970</width>
-    <height>753</height>
+    <width>870</width>
+    <height>667</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -51,6 +51,12 @@
     </property>
     <item>
      <widget class="QLabel" name="Logo">
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -84,7 +90,7 @@
          <bool>false</bool>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 94, 135);</string>
+         <string notr="true">color: rgb(0, 71, 102);</string>
         </property>
         <property name="text">
          <string>Hintergrund messen</string>
@@ -96,13 +102,11 @@
         <property name="font">
          <font>
           <family>Source Sans Pro</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
+          <pointsize>13</pointsize>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(105, 138, 147);</string>
+         <string notr="true">color: rgb(34, 34, 34);</string>
         </property>
         <property name="text">
          <string>Letze Hintergrund Messung: 12.10.2021 09:31</string>
@@ -139,7 +143,7 @@
          </font>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Produktinformation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#004766;&quot;&gt;Produktinformation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -159,10 +163,13 @@
           <property name="font">
            <font>
             <family>Source Sans Pro</family>
-            <pointsize>12</pointsize>
+            <pointsize>13</pointsize>
             <weight>50</weight>
             <bold>false</bold>
            </font>
+          </property>
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>
@@ -177,13 +184,13 @@
           <property name="font">
            <font>
             <family>Source Sans Pro</family>
-            <pointsize>12</pointsize>
+            <pointsize>13</pointsize>
             <weight>50</weight>
             <bold>false</bold>
            </font>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Charge&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Charge&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -198,13 +205,13 @@
           <property name="font">
            <font>
             <family>Source Sans Pro</family>
-            <pointsize>12</pointsize>
+            <pointsize>13</pointsize>
             <weight>50</weight>
             <bold>false</bold>
            </font>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Produktname&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Produktname&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -219,13 +226,13 @@
           <property name="font">
            <font>
             <family>Source Sans Pro</family>
-            <pointsize>12</pointsize>
+            <pointsize>13</pointsize>
             <weight>50</weight>
             <bold>false</bold>
            </font>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Ablaufdatum&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Ablaufdatum&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -240,10 +247,13 @@
           <property name="font">
            <font>
             <family>Source Sans Pro</family>
-            <pointsize>12</pointsize>
+            <pointsize>13</pointsize>
             <weight>50</weight>
             <bold>false</bold>
            </font>
+          </property>
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>
@@ -258,10 +268,13 @@
           <property name="font">
            <font>
             <family>Source Sans Pro</family>
-            <pointsize>12</pointsize>
+            <pointsize>13</pointsize>
             <weight>50</weight>
             <bold>false</bold>
            </font>
+          </property>
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>
@@ -276,13 +289,13 @@
           <property name="font">
            <font>
             <family>Source Sans Pro</family>
-            <pointsize>12</pointsize>
+            <pointsize>13</pointsize>
             <weight>50</weight>
             <bold>false</bold>
            </font>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Produktnumber&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Produktnumber&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -297,10 +310,13 @@
           <property name="font">
            <font>
             <family>Source Sans Pro</family>
-            <pointsize>12</pointsize>
+            <pointsize>13</pointsize>
             <weight>50</weight>
             <bold>false</bold>
            </font>
+          </property>
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>
@@ -315,13 +331,13 @@
           <property name="font">
            <font>
             <family>Source Sans Pro</family>
-            <pointsize>12</pointsize>
+            <pointsize>13</pointsize>
             <weight>50</weight>
             <bold>false</bold>
            </font>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Gebinde&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Gebinde&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -336,10 +352,13 @@
           <property name="font">
            <font>
             <family>Source Sans Pro</family>
-            <pointsize>12</pointsize>
+            <pointsize>13</pointsize>
             <weight>50</weight>
             <bold>false</bold>
            </font>
+          </property>
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>
@@ -379,7 +398,7 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>70</height>
+          <height>60</height>
          </size>
         </property>
         <property name="font">
@@ -391,7 +410,7 @@
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 94, 135);</string>
+         <string notr="true">color: rgb(0, 71, 102);</string>
         </property>
         <property name="text">
          <string>Messung starten</string>
@@ -403,7 +422,7 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>70</height>
+          <height>60</height>
          </size>
         </property>
         <property name="maximumSize">
@@ -421,7 +440,7 @@
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 94, 135);</string>
+         <string notr="true">color: rgb(0, 71, 102);</string>
         </property>
         <property name="text">
          <string>Schliessen</string>
