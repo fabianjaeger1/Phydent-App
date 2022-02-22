@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>963</width>
-    <height>902</height>
+    <width>930</width>
+    <height>936</height>
    </rect>
   </property>
   <property name="font">
@@ -41,6 +41,19 @@
      <number>12</number>
     </property>
     <item>
+     <spacer name="verticalSpacer_4">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
      <widget class="QLabel" name="Logo">
       <property name="text">
        <string/>
@@ -52,6 +65,19 @@
        <bool>false</bool>
       </property>
      </widget>
+    </item>
+    <item>
+     <spacer name="verticalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
     </item>
     <item>
      <layout class="QGridLayout" name="log_productsection">
@@ -100,35 +126,35 @@
         <item row="0" column="0">
          <widget class="QLabel" name="productlabel1">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Feld 1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Feld 1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="productlabel2">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Feld 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Feld 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="productlabel3">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Feld 3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Feld 3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
         <item row="3" column="0">
          <widget class="QLabel" name="productlabel4">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Feld 4&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Feld 4&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
         <item row="4" column="0">
          <widget class="QLabel" name="productlabel5">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Feld 5&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Feld 5&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -145,7 +171,7 @@
          </font>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Produktinformation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#004766;&quot;&gt;Produktinformation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -160,7 +186,7 @@
          </font>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Status&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#004766;&quot;&gt;Status&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -188,7 +214,7 @@
          </font>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Spektrum&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#004766;&quot;&gt;Spektrum&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -196,8 +222,8 @@
        <widget class="PlotWidget" name="graphicsView">
         <property name="minimumSize">
          <size>
-          <width>250</width>
-          <height>250</height>
+          <width>700</width>
+          <height>200</height>
          </size>
         </property>
        </widget>
@@ -223,7 +249,7 @@
          </font>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Klassifizierung&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#004766;&quot;&gt;Klassifizierung&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -251,7 +277,7 @@
            </font>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Konfidenz&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Konfidenz&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -271,7 +297,7 @@
            </font>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Klassen Name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Klassen Name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -280,13 +306,13 @@
           <property name="minimumSize">
            <size>
             <width>130</width>
-            <height>40</height>
+            <height>35</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
             <width>130</width>
-            <height>40</height>
+            <height>35</height>
            </size>
           </property>
           <property name="autoFillBackground">
@@ -342,13 +368,13 @@
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>40</height>
+            <height>35</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
             <width>16777215</width>
-            <height>40</height>
+            <height>35</height>
            </size>
           </property>
           <property name="autoFillBackground">
@@ -369,7 +395,7 @@
     <item>
      <layout class="QHBoxLayout" name="buttonsection_2">
       <property name="spacing">
-       <number>0</number>
+       <number>20</number>
       </property>
       <property name="leftMargin">
        <number>0</number>
@@ -380,10 +406,15 @@
       <item>
        <widget class="QCheckBox" name="checkBox">
         <property name="font">
-         <font/>
+         <font>
+          <family>Source Sans Pro</family>
+          <pointsize>13</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(105, 138, 147);</string>
+         <string notr="true">color: rgb(34, 34, 34);</string>
         </property>
         <property name="text">
          <string>Kommentar</string>
@@ -391,7 +422,14 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit"/>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>35</height>
+         </size>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -411,26 +449,26 @@
     <item>
      <layout class="QHBoxLayout" name="buttonsection">
       <property name="spacing">
-       <number>200</number>
+       <number>50</number>
       </property>
       <property name="leftMargin">
-       <number>100</number>
+       <number>0</number>
       </property>
       <property name="rightMargin">
-       <number>100</number>
+       <number>0</number>
       </property>
       <item>
        <widget class="QPushButton" name="printbutton">
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>50</height>
+          <height>60</height>
          </size>
         </property>
         <property name="font">
          <font>
-          <family>Corbel</family>
-          <pointsize>16</pointsize>
+          <family>Source Sans Pro Semibold</family>
+          <pointsize>14</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
@@ -439,7 +477,7 @@
          <bool>false</bool>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 94, 135);</string>
+         <string notr="true">color: rgb(0, 71, 102);</string>
         </property>
         <property name="text">
          <string>Drucken</string>
@@ -451,13 +489,13 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>50</height>
+          <height>60</height>
          </size>
         </property>
         <property name="font">
          <font>
-          <family>Corbel</family>
-          <pointsize>16</pointsize>
+          <family>Source Sans Pro Semibold</family>
+          <pointsize>14</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
@@ -466,7 +504,7 @@
          <bool>false</bool>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 94, 135);</string>
+         <string notr="true">color: rgb(0, 71, 102);</string>
         </property>
         <property name="text">
          <string>Zurück</string>
@@ -495,8 +533,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>963</width>
-     <height>21</height>
+     <width>930</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>881</width>
-    <height>691</height>
+    <width>933</width>
+    <height>712</height>
    </rect>
   </property>
   <property name="font">
@@ -25,6 +25,21 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>4</number>
+    </property>
+    <property name="leftMargin">
+     <number>20</number>
+    </property>
+    <property name="topMargin">
+     <number>20</number>
+    </property>
+    <property name="rightMargin">
+     <number>20</number>
+    </property>
+    <property name="bottomMargin">
+     <number>20</number>
+    </property>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <property name="leftMargin">
@@ -53,7 +68,7 @@
          </font>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt; color:#005e87;&quot;&gt;Einstellungen&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt; color:#004766;&quot;&gt;Einstellungen&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -91,7 +106,7 @@
          <widget class="QLabel" name="NN_label">
           <property name="maximumSize">
            <size>
-            <width>1660000</width>
+            <width>120</width>
             <height>16777215</height>
            </size>
           </property>
@@ -101,21 +116,27 @@
            </font>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#698a93;&quot;&gt;Neuronales Netz&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#222222;&quot;&gt;Neuronales Netz&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QComboBox" name="NN_choose_drop">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
-            <width>550</width>
-            <height>0</height>
+            <width>400</width>
+            <height>30</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>550</width>
+            <width>12000000</width>
             <height>16777215</height>
            </size>
           </property>
@@ -129,7 +150,7 @@
           <property name="minimumSize">
            <size>
             <width>100</width>
-            <height>28</height>
+            <height>30</height>
            </size>
           </property>
           <property name="maximumSize">
@@ -141,7 +162,7 @@
           <property name="font">
            <font>
             <family>Source Sans Pro</family>
-            <pointsize>12</pointsize>
+            <pointsize>11</pointsize>
            </font>
           </property>
           <property name="styleSheet">
@@ -203,7 +224,7 @@
          </font>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Datenspeicherung&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#004766;&quot;&gt;Datenspeicherung&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -223,6 +244,12 @@
         </property>
         <item row="0" column="1">
          <widget class="QLineEdit" name="messsdaten_edit">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true">color: rgb(105, 138, 147);</string>
           </property>
@@ -233,6 +260,12 @@
         </item>
         <item row="1" column="1">
          <widget class="QLineEdit" name="logdatei_edit">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true">color: rgb(105, 138, 147);</string>
           </property>
@@ -244,14 +277,14 @@
         <item row="0" column="0">
          <widget class="QLabel" name="messdaten_label">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Pfad Messdaten&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Pfad Messdaten&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="logdatei_label">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#698a93;&quot;&gt;Pfad Logdatei&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Pfad Logdatei&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -260,8 +293,14 @@
           <property name="minimumSize">
            <size>
             <width>100</width>
-            <height>0</height>
+            <height>30</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Source Sans Pro</family>
+            <pointsize>11</pointsize>
+           </font>
           </property>
           <property name="styleSheet">
            <string notr="true">color: rgb(0, 94, 135);</string>
@@ -276,8 +315,14 @@
           <property name="minimumSize">
            <size>
             <width>100</width>
-            <height>0</height>
+            <height>30</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Source Sans Pro</family>
+            <pointsize>11</pointsize>
+           </font>
           </property>
           <property name="styleSheet">
            <string notr="true">color: rgb(0, 94, 135);</string>
@@ -329,7 +374,7 @@
          </font>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#005e87;&quot;&gt;Datenfelder&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#004766;&quot;&gt;Datenfelder&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -365,8 +410,14 @@
         </item>
         <item row="1" column="0">
          <widget class="QCheckBox" name="productlabel2check">
+          <property name="font">
+           <font>
+            <family>Source Sans Pro</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="styleSheet">
-           <string notr="true">color: rgb(105, 138, 147);</string>
+           <string notr="true">color: rgb(34, 34, 34);</string>
           </property>
           <property name="text">
            <string>Feld 2</string>
@@ -385,8 +436,14 @@
         </item>
         <item row="0" column="0">
          <widget class="QCheckBox" name="productlabel1check">
+          <property name="font">
+           <font>
+            <family>Source Sans Pro</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="styleSheet">
-           <string notr="true">color: rgb(105, 138, 147);</string>
+           <string notr="true">color: rgb(34, 34, 34);</string>
           </property>
           <property name="text">
            <string>Feld 1</string>
@@ -405,8 +462,14 @@
         </item>
         <item row="2" column="0">
          <widget class="QCheckBox" name="productlabel3check">
+          <property name="font">
+           <font>
+            <family>Source Sans Pro</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="styleSheet">
-           <string notr="true">color: rgb(105, 138, 147);</string>
+           <string notr="true">color: rgb(34, 34, 34);</string>
           </property>
           <property name="text">
            <string>Feld 3</string>
@@ -415,8 +478,14 @@
         </item>
         <item row="4" column="0">
          <widget class="QCheckBox" name="productlabel5check">
+          <property name="font">
+           <font>
+            <family>Source Sans Pro</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="styleSheet">
-           <string notr="true">color: rgb(105, 138, 147);</string>
+           <string notr="true">color: rgb(34, 34, 34);</string>
           </property>
           <property name="text">
            <string>Feld 5</string>
@@ -444,8 +513,14 @@
         </item>
         <item row="3" column="0">
          <widget class="QCheckBox" name="productlabel4check">
+          <property name="font">
+           <font>
+            <family>Source Sans Pro</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="styleSheet">
-           <string notr="true">color: rgb(105, 138, 147);</string>
+           <string notr="true">color: rgb(34, 34, 34);</string>
           </property>
           <property name="text">
            <string>Feld 4</string>
@@ -484,19 +559,30 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="spacing">
+       <number>50</number>
+      </property>
       <item>
        <widget class="QPushButton" name="save_button">
         <property name="minimumSize">
          <size>
           <width>140</width>
-          <height>50</height>
+          <height>60</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>140</width>
-          <height>50</height>
+          <width>10000</width>
+          <height>60</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Source Sans Pro Semibold</family>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true">color: rgb(0, 94, 135);</string>
@@ -508,11 +594,25 @@
       </item>
       <item>
        <widget class="QPushButton" name="cancel_button">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>60</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
-          <width>140</width>
-          <height>50</height>
+          <width>100000</width>
+          <height>60</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Source Sans Pro Semibold</family>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true">color: rgb(0, 94, 135);</string>
