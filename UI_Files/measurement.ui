@@ -328,10 +328,16 @@
         </item>
         <item row="2" column="0" alignment="Qt::AlignHCenter">
          <widget class="QLabel" name="identification_image">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
-            <width>40</width>
-            <height>40</height>
+            <width>35</width>
+            <height>35</height>
            </size>
           </property>
           <property name="maximumSize">
@@ -534,7 +540,7 @@
      <x>0</x>
      <y>0</y>
      <width>930</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
