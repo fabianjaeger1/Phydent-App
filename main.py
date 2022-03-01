@@ -7,6 +7,16 @@ import numpy as np
 import pandas as pd
 from typing import Text
 
+
+'Import NN relevant Packages'
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+from sklearn.preprocessing import LabelBinarizer
+from sklearn.preprocessing import LabelEncoder
+# from keras.utils import to_categorical
+import keras as ks
+
 from PyQt5.QtGui     import *
 from PyQt5.QtCore    import *
 from PyQt5.QtWidgets import *
@@ -806,7 +816,8 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         spectrum_data.drop("Product", inplace = True, axis=1)
         spectrum_data.drop("Dataset", inplace = True, axis=1)
         spectrum_data.drop("Augmented", inplace = True, axis=1)
-   
+        
+        classification_data = spectrum_data.copy()
         # print(spectrum_data)
         spectrum_data = np.array(spectrum_data)
         spectrum_data = spectrum_data[0].tolist()
@@ -816,8 +827,50 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         #self.measurementwindow.graphicsView.plot(hour,temperature)
         curve = self.measurementwindow.graphicsView.plot(x_points,spectrum_data)
         curve.getViewBox().invertX(True)
+
+
+        model = ks.models.load_model('Phydent_V24_NNModel')
+        print(model.summary())
+        currentwd = os.getcwd()
+        path_txtfile = r'\spectra_csv\x_points.txt'
+        txtfile = open("%s%s" % (currentwd,path_txtfile))
+        points_split = txtfile.read().splitlines()
+
+        '''Drop additional points for classification'''
+        for i in range(0,4):
+            classification_data.drop(points_split[i], inplace = True, axis = 1)
+        classification_data = classification_data.dropna(axis = 1)
+
+        '''Define encoder/decoder'''
+        path_encoder_file = '\Phydent_V24_NNModel\classes_PhydentV24.npy'
+        currentwd = os.getcwd()
+        path_encoder_file = "%s%s"  % (currentwd, path_encoder_file)
+
+        encoder = LabelEncoder()
+        encoder_array = np.load(path_encoder_file)
+        encoder = encoder.fit(encoder_array)
         
-        #print(self.popups)
+        def class_prediction(x_test):
+            '''Make prediction with trained model'''
+            digits = 0
+            y_prob = model.predict(x_test)
+            y_prob.round(2)
+            '''Returns integer from encoder corresponding to a given class'''
+            class_prediction=np.argmax(y_prob,axis=1)
+            print(class_prediction)
+            encoder_output = str(encoder.inverse_transform(class_prediction)[0], 'utf-8')
+            for character in encoder_output:
+                if character.isdigit():
+                    digits += 1
+            encoder_output = encoder_output[:len(encoder_output) - digits-1]
+            return encoder_output
+        
+        predicted_class = class_prediction(classification_data)
+        self.measurementwindow.classname.setText(predicted_class)
+
+        path_identification_image = '{}\Icons\positive.png'.format(currentwd)
+        pixmap = QPixmap(path_identification_image)
+        self.measurementwindow.identification_image.setPixmap(pixmap)
 
     def gettime(self):
         t = time.localtime()

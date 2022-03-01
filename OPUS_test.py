@@ -5,6 +5,10 @@ import re
 import time
 import pandas as pd
 import sys 
+
+'''Serves as testing ground for the OPUS functions'''
+
+
 def opusrequest(IP,port,command):
     # print(socket.gethostbyname(socket.gethostname()))
         command=command.replace(" ", "%20")
@@ -96,7 +100,7 @@ def test():
     print(compatible)
 
 
-test2()
+#test2()
 
 
 def measuring():
@@ -125,9 +129,9 @@ def measuring():
     #Perform a Measurement
     command = opusrequest("127.0.0.1", 80, "MeasureSample(0, {EXP='ATR_Di.XPM', XPP='C:\\Users\\G164\\Desktop', NSS=1, XPM = 'Test'})")
     print(command)
-    #Obtain information about selected/just measured spectrum
+    'Obtain information about selected/just measured spectrum'
     filenames=opusrequest("127.0.0.1", 80,"GET_SELECTED")
-    #Extract absolute path to file
+    'Extract absolute path to file'
     file_path =  '{}'.format(filenames[1])
     #Save the file into the appropriate Phydent Folder
     save = opusrequest("127.0.0.1", 80, "SaveAs([%s], {SAN=%s, DAP='%s'})" % (file_path, new_file_name, target_path))
@@ -152,7 +156,7 @@ def measuring():
     #Split Data from read array 
     derivative = opusrequest(host, port, "COMMAND_LINE Derivative ([%s], {QSP=13, QOD=1});" % file_path)
     normalization = opusrequest(host, port, "COMMAND_LINE  Normalize ([%s], {NME=2, NFX=4000.000000, NLX=400.000000, NWR=1});" % file_path)
-    time.sleep(1)
+    time.sleep(2)
     read2 = opusrequest(host, port, "READ_FROM_FILE %s;" % file_path)
     read3 = opusrequest(host, port, "READ_FROM_BLOCK AB/1.Der.")
     read4 = opusrequest(host, port, "READ_HEADER")
@@ -193,8 +197,9 @@ def measuring():
     #unload = opusrequest("127.0.0.1", 80, "UNLOAD_FILE %s" % str(file_name))
     ####################
 
-#measuring()
-
+command = opusrequest("127.0.0.1", 80, "MeasureSample(0, {NSS=24,EXP='ATR_Di_Phydent.XPM', XPP='C:\\Users\\G164\\Desktop\\Phydent-App\\XPM\\ATR_Di_Phydent.XPM')")
+#derivative = opusrequest("127.0.0.1", 80, "COMMAND_LINE Derivative ([%s], {QSP=13, QOD=1});" % file_path)
+#normalization = opusrequest("127.0.0.1", 80, "COMMAND_LINE  Normalize ([%s], {NME=2, NFX=4000.000000, NLX=400.000000, NWR=1});" % file_path)
 # print(file_name)
 # print(filenames)
 #opusrequest("127.0.0.1", 80, "SaveAs(0, {SAN='test.0', DAP='C:\\Users\\G164\\Desktop'})")

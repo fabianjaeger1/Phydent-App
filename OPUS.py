@@ -112,8 +112,9 @@ class OPUS_measurement(QThread):
                 measurement_data_raw.append(np.nan)
 
         derivative2 = self.opusrequest(host, port, "COMMAND_LINE Derivative ([%s], {QSP=13, QOD=1});" % path_file)
+        time.sleep(5)
         normalization = self.opusrequest(host, port, "COMMAND_LINE  Normalize ([%s], {NME=2, NFX=4000.000000, NLX=400.000000, NWR=1});" % path_file)
-        time.sleep(1)
+        time.sleep(5)
         read2 = self.opusrequest(host, port, "READ_FROM_FILE %s;" % path_file)
         read3 = self.opusrequest(host, port, "READ_FROM_BLOCK AB/1.Der.")
         read4 = self.opusrequest(host, port, "READ_HEADER")
@@ -182,9 +183,9 @@ class OPUS_measurement(QThread):
         csvlist_raw = self.load_csvfile(x_values_leer)
 
         # answer= self.opusrequest("127.0.0.1", 80, "COMMAND_LINE LoadFile('/mnt/c/Users/G164.PHYTAX/Desktop/phydent/Leermessung.0', WARNING)")
-        command = self.opusrequest("127.0.0.1", 80, "MeasureSample(0, {EXP='ATR_Di_Phydent.XPM', XPP='C:\\Users\\G164\\Desktop\\Phydent-App\\XPM\\ATR_Di_Phydent.XPM', NSS=24)")
+        command = self.opusrequest("127.0.0.1", 80, "MeasureSample(0, {NSS=24, EXP='ATR_Di_Phydent.XPM', XPP='C:\\Users\\G164\\Desktop\\Phydent-App\\XPM\\ATR_Di_Phydent.XPM')")
         #print(command)
-        time.sleep(10)
+        time.sleep(30)
         #Obtain information about selected/just measured spectrum
         filenames= self.opusrequest("127.0.0.1", 80,"GET_SELECTED")
         print(filenames)
