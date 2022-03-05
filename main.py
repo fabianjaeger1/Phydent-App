@@ -46,7 +46,7 @@ import OPUS
 # import OPUS_communication
 
 
-class about(QMainWindow, aboutUI.Ui_MainWindow):
+class about(QMainWindow, aboutUI.Ui_About):
     def __init__(self, parent = None):
         super(about, self).__init__(parent)
         self.setupUi(self)
@@ -836,7 +836,7 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         txtfile = open("%s%s" % (currentwd,path_txtfile))
         points_split = txtfile.read().splitlines()
 
-        '''Drop additional points for classification'''
+        '''Drop additional points initial points for classification'''
         for i in range(0,4):
             classification_data.drop(points_split[i], inplace = True, axis = 1)
         classification_data = classification_data.dropna(axis = 1)
@@ -849,28 +849,48 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         encoder = LabelEncoder()
         encoder_array = np.load(path_encoder_file)
         encoder = encoder.fit(encoder_array)
-        
+
         def class_prediction(x_test):
             '''Make prediction with trained model'''
             digits = 0
             y_prob = model.predict(x_test)
             y_prob.round(2)
+            prediction_certainty = np.round(np.max(y_prob)*100, 2)
             '''Returns integer from encoder corresponding to a given class'''
             class_prediction=np.argmax(y_prob,axis=1)
-            print(class_prediction)
             encoder_output = str(encoder.inverse_transform(class_prediction)[0], 'utf-8')
             for character in encoder_output:
                 if character.isdigit():
                     digits += 1
             encoder_output = encoder_output[:len(encoder_output) - digits-1]
-            return encoder_output
+            return encoder_output,  prediction_certainty
         
         predicted_class = class_prediction(classification_data)
-        self.measurementwindow.classname.setText(predicted_class)
+        predicted_probability = "{}%".format(np.round(predicted_class[1],1))
+        self.measurementwindow.classname.setText(predicted_class[0])
+        self.measurementwindow.confidence.setText(predicted_probability)
 
-        path_identification_image = '{}\Icons\positive.png'.format(currentwd)
-        pixmap = QPixmap(path_identification_image)
-        self.measurementwindow.identification_image.setPixmap(pixmap)
+        # path_identification_image = '{}/Icons/negative.png'.format(currentwd)
+        # pixmap = QPixmap(path_identification_image)
+        # print(pixmap)
+        # self.measurementwindow.identification_image.setPixmap(pixmap)
+
+        if predicted_class[1] > 95:
+            print("positive")
+            path_identification_image = '{}/Icons/positive.png'.format(currentwd)
+            pixmap = QPixmap(path_identification_image)
+            print(pixmap)
+            self.measurementwindow.identification_image.setPixmap(pixmap)
+            self.update()
+            self.measurementwindow.update()
+        else:
+            print("negative")
+            path_identification_image = '{}/Icons/negative.png'.format(currentwd)
+            pixmap = QPixmap(path_identification_image)
+            print(pixmap)
+            self.measurementwindow.identification_image.setPixmap(pixmap)
+            self.update()
+            self.measurementwindow.update()
 
     def gettime(self):
         t = time.localtime()

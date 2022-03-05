@@ -11,11 +11,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(506, 404)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+class Ui_About(object):
+    def setupUi(self, About):
+        About.setObjectName("About")
+        About.resize(506, 402)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("../PhydentLogo.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        About.setWindowIcon(icon)
+        self.centralwidget = QtWidgets.QWidget(About)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -52,31 +55,31 @@ class Ui_MainWindow(object):
         self.label_3.setAlignment(QtCore.Qt.AlignCenter)
         self.label_3.setObjectName("label_3")
         self.verticalLayout.addWidget(self.label_3)
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        About.setCentralWidget(self.centralwidget)
+        self.statusbar = QtWidgets.QStatusBar(About)
         self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        About.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(About)
+        QtCore.QMetaObject.connectSlotsByName(About)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, About):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label_4.setText(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        About.setWindowTitle(_translate("About", "About"))
+        self.label_4.setText(_translate("About", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Source Sans Pro\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#005e87;\">Phydent is licensed under the LGPL license</span></p></body></html>"))
-        self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#005e87;\">Version 1.0.0</span></p><p><span style=\" color:#005e87;\">Python 3.8.6</span></p></body></html>"))
-        self.label_3.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" color:#005e87;\">Kontakt:</span></p><p align=\"center\"><span style=\" color:#698a93;\">Phytax GmbH Wagistrasse 23, 8952 Schlieren, Schweiz</span></p><p align=\"center\"><span style=\" color:#698a93;\">Email: info@phytax.ch</span></p><p align=\"center\"><span style=\" color:#698a93;\">Telefon: +41 43 495 04 30</span></p></body></html>"))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#004766;\">Phydent is licensed under the LGPL license</span></p></body></html>"))
+        self.label_2.setText(_translate("About", "<html><head/><body><p><span style=\" color:#004766;\">Version 1.0.0</span></p><p><span style=\" color:#004766;\">Python 3.8.6</span></p></body></html>"))
+        self.label_3.setText(_translate("About", "<html><head/><body><p align=\"center\"><span style=\" color:#004766;\">Kontakt:</span></p><p align=\"center\"><span style=\" color:#222222;\">Phytax GmbH Wagistrasse 23, 8952 Schlieren, Schweiz</span></p><p align=\"center\"><span style=\" color:#222222;\">Email: info@phytax.ch</span></p><p align=\"center\"><span style=\" color:#222222;\">Telefon: +41 43 495 04 3</span><span style=\" color:#698a93;\">0</span></p></body></html>"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    About = QtWidgets.QMainWindow()
+    ui = Ui_About()
+    ui.setupUi(About)
+    About.show()
     sys.exit(app.exec_())
