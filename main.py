@@ -1,4 +1,5 @@
 # Main Python file for the Phydent Application
+from cProfile import label
 import sys
 import os
 import time
@@ -127,6 +128,7 @@ class measurement(QMainWindow, measurementUI.Ui_MainWindow):
         #self.popups = []
 
 class login(QMainWindow, loginUI.Ui_login):
+    label_color = 'rgb(34, 34, 34)'
     settings_data = QSettings("Phytax", "Phydent")
     toplist = []
     winlist = []
@@ -187,6 +189,7 @@ class login(QMainWindow, loginUI.Ui_login):
         sys.exit()
 
 class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
+    label_color = 'rgb(34, 34, 34)'
     
     settings_data = QSettings("Phytax", "Phydent")
     background_measurement_thread = False
@@ -265,6 +268,7 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         #self.__init__
     
     def readSettings(self):
+    
         settings = QSettings("Phytax", "Phydent")
         position = settings.value("pos_mainwindow", QPoint(200,200))
         size = settings.value("size_mainwindow", QSize(400,400))
@@ -287,13 +291,13 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         if productlabel1_check == True:
             productlabel1 = settings.value("productlabel1")
             self.productlabel1.setText(productlabel1)
-            self.productlabel1.setStyleSheet("color: rgb(105, 138, 147);")
+            self.productlabel1.setStyleSheet("color: {};".format(self.label_color))
             self.productlabel1edit.setReadOnly(False)
             self.productlabel1edit.setStyleSheet("QLineEdit"
                                         "{"
                                         "background : white;"
-                                        "color : gray;"
-                                        "}")
+                                        "color : %s;"
+                                        "}" % (self.label_color))
         
         else:
             self.productlabel1edit.setStyleSheet("QLineEdit"
@@ -307,13 +311,13 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         if productlabel2_check == True:
             productlabel2 = settings.value("productlabel2")
             self.productlabel2.setText(productlabel2)
-            self.productlabel2.setStyleSheet("color: rgb(105, 138, 147);")
+            self.productlabel2.setStyleSheet("color: {};".format(self.label_color))
             self.productlabel2edit.setReadOnly(False)
             self.productlabel2edit.setStyleSheet("QLineEdit"
                                     "{"
                                     "background : white;"
-                                    "color : gray;"
-                                    "}")
+                                    "color : %s;"
+                                    "}" % (self.label_color))
         else:
             self.productlabel2edit.setStyleSheet("QLineEdit"
                                             "{"
@@ -326,13 +330,13 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         if productlabel3_check == True:
             productlabel3 = settings.value("productlabel3")
             self.productlabel3.setText(productlabel3)
-            self.productlabel3.setStyleSheet("color: rgb(105, 138, 147);")
+            self.productlabel3.setStyleSheet("color: {};".format(self.label_color))
             self.productlabel3edit.setReadOnly(False)
             self.productlabel3edit.setStyleSheet("QLineEdit"
                                     "{"
                                     "background : white;"
-                                    "color : gray;"
-                                    "}")
+                                    "color : %s;"
+                                    "}" % (self.label_color))
         else:
             self.productlabel3edit.setStyleSheet("QLineEdit"
                                             "{"
@@ -345,13 +349,13 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         if productlabel4_check == True:
             productlabel4 = settings.value("productlabel4")
             self.productlabel4.setText(productlabel4)
-            self.productlabel4.setStyleSheet("color: rgb(105, 138, 147);")
+            self.productlabel4.setStyleSheet("color: {};".format(self.label_color))
             self.productlabel4edit.setReadOnly(False)
             self.productlabel4edit.setStyleSheet("QLineEdit"
                                     "{"
                                     "background : white;"
-                                    "color : gray;"
-                                    "}")
+                                    "color : %s;"
+                                    "}" % (self.label_color))
         else:
             self.productlabel4edit.setStyleSheet("QLineEdit"
                                             "{"
@@ -364,13 +368,13 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         if productlabel5_check == True:
             productlabel5 = settings.value("productlabel5")
             self.productlabel5.setText(productlabel5)
-            self.productlabel5.setStyleSheet("color: rgb(105, 138, 147);")
+            self.productlabel5.setStyleSheet("color: {};".format(self.label_color))
             self.productlabel5edit.setReadOnly(False)
             self.productlabel5edit.setStyleSheet("QLineEdit"
                                     "{"
                                     "background : white;"
-                                    "color : gray;"
-                                    "}")
+                                    "color : %s;"
+                                    "}" % (self.label_color))
         else:
             self.productlabel5edit.setStyleSheet("QLineEdit"
                                             "{"
@@ -494,29 +498,29 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         self.settingswindow.productlabel1check.setChecked(productlabel1_check)
         productlabel1 =  settings_data.value("productlabel1")
         self.settingswindow.productlabel1edit.setText(productlabel1)
-        self.settingswindow.productlabel1edit.setStyleSheet("color: rgb(105, 138, 147);")
+        self.settingswindow.productlabel1edit.setStyleSheet("color: {};".format(self.label_color))
         
 
         self.settingswindow.productlabel2check.setChecked(productlabel2_check)
         productlabel2 =  settings_data.value("productlabel2")
         self.settingswindow.productlabel2edit.setText(productlabel2)
-        self.settingswindow.productlabel2edit.setStyleSheet("color: rgb(105, 138, 147);")
+        self.settingswindow.productlabel2edit.setStyleSheet("color: {};".format(self.label_color))
     
     
         self.settingswindow.productlabel3check.setChecked(productlabel3_check)
         productlabel3 =  settings_data.value("productlabel3")
         self.settingswindow.productlabel3edit.setText(productlabel3)
-        self.settingswindow.productlabel3edit.setStyleSheet("color: rgb(105, 138, 147);")
+        self.settingswindow.productlabel3edit.setStyleSheet("color: {};".format(self.label_color))
         
         self.settingswindow.productlabel4check.setChecked(productlabel4_check)
         productlabel4 =  settings_data.value("productlabel4")
         self.settingswindow.productlabel4edit.setText(productlabel4)
-        self.settingswindow.productlabel4edit.setStyleSheet("color: rgb(105, 138, 147);")
+        self.settingswindow.productlabel4edit.setStyleSheet("color: {};".format(self.label_color))
 
         self.settingswindow.productlabel5check.setChecked(productlabel5_check)
         productlabel5 =  settings_data.value("productlabel5")
         self.settingswindow.productlabel5edit.setText(productlabel5)
-        self.settingswindow.productlabel5edit.setStyleSheet("color: rgb(105, 138, 147);")
+        self.settingswindow.productlabel5edit.setStyleSheet("color: {};".format(self.label_color))
 
         
         self.settingswindow.messdaten_choose.clicked.connect(self.select_data_path)
@@ -655,7 +659,7 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
 
         text_start_prompt = "[{}]: Messung gestartet".format(self.gettime())
         #self.measurementwindow.logPrompt.setText("Messung gestartet...")
-        self.measurementwindow.logPrompt.setStyleSheet("color : gray;")
+        self.measurementwindow.logPrompt.setStyleSheet("color : {};".format(self.label_color))
         self.measurementwindow.logPrompt.setText(text_start_prompt)
         self.measurementwindow.logPrompt.setReadOnly(True)
         self.measurementwindow.graphicsView.setBackground("w")
@@ -722,38 +726,44 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
 
  
         
-        self.measurementwindow.productlabel1.setStyleSheet("color: rgb(105, 138, 147);")
-        self.measurementwindow.productlabel2.setStyleSheet("color: rgb(105, 138, 147);")
-        self.measurementwindow.productlabel3.setStyleSheet("color: rgb(105, 138, 147);")
-        self.measurementwindow.productlabel4.setStyleSheet("color: rgb(105, 138, 147);")
-        self.measurementwindow.productlabel5.setStyleSheet("color: rgb(105, 138, 147);")
+        self.measurementwindow.productlabel1.setStyleSheet("color: {};".format(self.label_color))
+        self.measurementwindow.productlabel2.setStyleSheet("color: {};".format(self.label_color))
+        self.measurementwindow.productlabel3.setStyleSheet("color: {};".format(self.label_color))
+        self.measurementwindow.productlabel4.setStyleSheet("color: {};".format(self.label_color))
+        self.measurementwindow.productlabel5.setStyleSheet("color: {};".format(self.label_color))
+
+
+        self.measurementwindow.productlabel1edit.setStyleSheet("color: {};".format(self.label_color))
+        self.measurementwindow.productlabel2edit.setStyleSheet("color: {};".format(self.label_color))
+        self.measurementwindow.productlabel3edit.setStyleSheet("color: {};".format(self.label_color))
+        self.measurementwindow.productlabel4edit.setStyleSheet("color: {};".format(self.label_color))
+        self.measurementwindow.productlabel5edit.setStyleSheet("color: {};".format(self.label_color))
         
-        
-        self.measurementwindow.productlabel1edit.setStyleSheet("QLineEdit"
-                                            "{"
-                                            #"background : lightgray;"
-                                            "color : gray;"
-                                            "}")
-        self.measurementwindow.productlabel2edit.setStyleSheet("QLineEdit"
-                                            "{"
-                                            #"background : lightgray;"
-                                            "color : gray;"
-                                            "}")
-        self.measurementwindow.productlabel3edit.setStyleSheet("QLineEdit"
-                                            "{"
-                                            #"background : lightgray;"
-                                            "color : gray;"
-                                            "}")
-        self.measurementwindow.productlabel4edit.setStyleSheet("QLineEdit"
-                                            "{"
-                                            #"background : lightgray;"
-                                            "color : gray;"
-                                            "}")
-        self.measurementwindow.productlabel5edit.setStyleSheet("QLineEdit"
-                                            "{"
-                                            #"background : lightgray;"
-                                            "color : gray;"
-                                            "}")
+        # self.measurementwindow.productlabel1edit.setStyleSheet("QLineEdit"
+        #                                     "{"
+        #                                     #"background : lightgray;"
+        #                                     "color : {};"
+        #                                     "}".format(label_color))
+        # self.measurementwindow.productlabel2edit.setStyleSheet("QLineEdit"
+        #                                     "{"
+        #                                     #"background : lightgray;"
+        #                                     "color : {};"
+        #                                     "}".format(label_color))
+        # self.measurementwindow.productlabel3edit.setStyleSheet("QLineEdit"
+        #                                     "{"
+        #                                     #"background : lightgray;"
+        #                                     "color : gray;"
+        #                                     "}".format(label_color))
+        # self.measurementwindow.productlabel4edit.setStyleSheet("QLineEdit"
+        #                                     "{"
+        #                                     #"background : lightgray;"
+        #                                     "color : gray;"
+        #                                     "}".format(label_color))
+        # self.measurementwindow.productlabel5edit.setStyleSheet("QLineEdit"
+        #                                     "{"
+        #                                     #"background : lightgray;"
+        #                                     "color : gray;"
+        #                                     "}".format(label_color))
         
         self.measurementwindow.backbutton.clicked.connect(self.go_back)
         
