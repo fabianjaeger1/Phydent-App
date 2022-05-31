@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>933</width>
-    <height>712</height>
+    <height>735</height>
    </rect>
   </property>
   <property name="font">
@@ -116,7 +116,7 @@
            </font>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#222222;&quot;&gt;Neuronales Netz&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#222222;&quot;&gt;Version&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -242,6 +242,57 @@
         <property name="verticalSpacing">
          <number>15</number>
         </property>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="messdaten_choose">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Source Sans Pro</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(0, 94, 135);</string>
+          </property>
+          <property name="text">
+           <string>Auswählen</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="logdatei_choose">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Source Sans Pro</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(0, 94, 135);</string>
+          </property>
+          <property name="text">
+           <string>Auswählen</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="logdatei_label">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Pfad Logdatei&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="1">
          <widget class="QLineEdit" name="messsdaten_edit">
           <property name="minimumSize">
@@ -281,37 +332,31 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="logdatei_label">
+        <item row="2" column="0">
+         <widget class="QLabel" name="report_label">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Pfad Logdatei&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#222222;&quot;&gt;Pfad Bericht&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="2">
-         <widget class="QPushButton" name="logdatei_choose">
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="report_edit">
           <property name="minimumSize">
            <size>
-            <width>100</width>
+            <width>0</width>
             <height>30</height>
            </size>
           </property>
-          <property name="font">
-           <font>
-            <family>Source Sans Pro</family>
-            <pointsize>11</pointsize>
-           </font>
-          </property>
           <property name="styleSheet">
-           <string notr="true">color: rgb(0, 94, 135);</string>
+           <string notr="true">color: rgb(105, 138, 147);</string>
           </property>
-          <property name="text">
-           <string>Auswählen</string>
+          <property name="readOnly">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
-        <item row="0" column="2">
-         <widget class="QPushButton" name="messdaten_choose">
+        <item row="2" column="2">
+         <widget class="QPushButton" name="report_choose">
           <property name="minimumSize">
            <size>
             <width>100</width>

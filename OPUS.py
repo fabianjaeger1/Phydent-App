@@ -6,6 +6,28 @@ import os
 import pandas as pd
 import time
 
+def opusrequest(IP,port,command):
+        command=command.replace(" ", "%20")
+        request="GET /OpusCommand.htm?" + command + "\r\n\r\n"
+        # print(request)
+        data = ""
+        part = None
+
+        #request to OPUS
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect((IP,port))
+        s.sendall(request.encode("windows-1252"))
+        #construct answer partially from "byte stream"
+        while True:
+            part = s.recv(1048576)  # 2^20 bytes = 1 MByte        
+            if (part == b''):
+                break;  
+            else:
+                data += part.decode("windows-1252")
+        #Close connection and provide answer as string    
+        s.close()
+        return(data.split("\n\r\n"))
+
 #  def obtain_x_values(host, port):
 
 #         #pfad_leermessung_spektrum = f'"{path_leermessung}":AB'
@@ -45,7 +67,7 @@ class OPUS_measurement(QThread):
     port = 80
     target_path = "C:\\Users\\G164\\Desktop"
     new_file_name = 'test'
-    path_leermessung = "K:\\Phydent\\V22celinetest\\Leermessungen\\Leermessung.0"
+    path_leermessung = "C:\\Users\\G164\\Desktop\\Phydent-App\\Leermessung.0"
 
     def get_x_values(self,path_leermessung, host, port):
         pfad_leermessung_spektrum = f'"{path_leermessung}":AB'
@@ -58,6 +80,7 @@ class OPUS_measurement(QThread):
         read = self.opusrequest(host, port, "READ_DATA")
 
         data = np.array(read[1].splitlines()).astype("float64")
+        print(data)
         nr_points, upperx, lowerx, data_processed = data[0], data[1], data[2], data[4:]
         delta_x = (upperx - lowerx)/(nr_points-1)
         x_points = list(reversed([lowerx + x*delta_x for x in range(int(nr_points))]))
@@ -149,9 +172,9 @@ class OPUS_measurement(QThread):
         # save_to_txt(file_pre, path_product, filename_pre)
         csvlist_pre.loc[len(csvlist_pre)] = measurement_data_dernorm
         csvlist_raw.loc[len(csvlist_raw)] = measurement_data_raw
-        unload = self.opusrequest(host, port, "UNLOAD_FILE %s" % str(path_file))
+        # unload = self.opusrequest(host, port, "UNLOAD_FILE %s" % str(path_file))
         unload = self.opusrequest(host, port, "UNLOAD_FILE %s" % str(path_leermessung))
-        unload = self.opusrequest(host, port, "UNLOAD_FILE %s" % str(normalized_spectrum_path))
+        # unload = self.opusrequest(host, port, "UNLOAD_FILE %s" % str(normalized_spectrum_path))
         return csvlist_raw, csvlist_pre
         
     def load_csvfile(self,x_values):
@@ -250,9 +273,6 @@ class OPUS_measurement(QThread):
         #Close connection and provide answer as string    
         s.close()
         return(data.split("\n\r\n"))
-
-
-
 
 
 class OPUS_coms(QThread):

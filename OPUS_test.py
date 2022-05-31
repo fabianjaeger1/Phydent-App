@@ -6,6 +6,7 @@ import time
 import pandas as pd
 import sys 
 
+
 '''Serves as testing ground for the OPUS functions'''
 
 
@@ -32,6 +33,53 @@ def opusrequest(IP,port,command):
         #Close connection and provide answer as string    
         s.close()
         return(data.split("\n\r\n"))
+
+
+def opus_metadata():
+    host = "127.0.0.1"
+    port = 80
+    target_path = 'C:\\Users\\G164\\Desktop'
+    new_file_name = 'test'
+    #path_leermessung = "K:\\Phydent\\V22celinetest\\Leermessungen\\Leermessung.0"
+
+    test=opusrequest("127.0.0.1", 80)
+    print(test)
+
+    version_number = opusrequest("127.0.0.1", 80, "GET_VERSION")[0]
+    user = opusrequest("127.0.0.1", 80,"GET_USERNAME")[1]
+
+
+
+    print(user)
+    print(version_number)
+    spectrum_path_name=opusrequest("127.0.0.1", 80,"GET_SELECTED")
+    print(spectrum_path_name)
+    opus_path = opusrequest("127.0.0.1", 80, "GET_OPUSPATH")
+
+    path_file =opusrequest("127.0.0.1", 80,"GET_SELECTED")[1]
+    read2 = opusrequest("127.0.0.1", 80, "READ_FROM_FILE %s;" % path_file)
+    read3 = opusrequest("127.0.0.1", 80, "READ_FROM_BLOCK Rf")
+    #read3 = opusrequest("127.0.0.1", 80, "READ_FROM_BLOCK Sample Parameters")
+    #read3 = opusrequest("127.0.0.1", 80, "READ_HEADER")
+    print(read3)
+
+        #Read Raw Spectrum Dat
+    # path_file =opusrequest("127.0.0.1", 80,"GET_SELECTED")[1]
+    # print(path_file)
+    # read2 = opusrequest("127.0.0.1", 80, "READ_FROM_FILE %s;" % path_file)
+    # print(read2)
+    # read3 = opusrequest("127.0.0.1", 80, "READ_FROM_BLOCK AB")
+    # print(read3)
+    # read4 = opusrequest(host, port, "READ_HEADER")
+    # print(read4)S
+    # read3 = opusrequest("127.0.0.1", 80, "READ_FROM_BLOCK AB")
+    # read4 = opusrequest("127.0.0.1", 80, "READ_HEADER")
+    # read = opusrequest("127.0.0.1", 80, "READ_DATA")
+
+    
+    
+opus_metadata()
+
 
 # cwdir = os.getcwd()
 # print(cwdir)
@@ -99,8 +147,6 @@ def test():
     compatible= opusrequest("127.0.0.1", 80,"COMMAND_LINE MakeCompatible ([%s], [%s], {});" % (pfad_leermessung_spektrum, file_path))
     print(compatible)
 
-
-#test2()
 
 
 def measuring():
@@ -197,9 +243,9 @@ def measuring():
     #unload = opusrequest("127.0.0.1", 80, "UNLOAD_FILE %s" % str(file_name))
     ####################
 
-command = opusrequest("127.0.0.1", 80, "MeasureSample(0, {NSS=24,EXP='ATR_Di_Phydent.XPM', XPP='C:\\Users\\G164\\Desktop\\Phydent-App\\XPM\\ATR_Di_Phydent.XPM')")
+#command = opusrequest("127.0.0.1", 80, "MeasureSample(0, {NSS=24,EXP='ATR_Di_Phydent.XPM', XPP='C:\\Users\\G164\\Desktop\\Phydent-App\\XPM\\ATR_Di_Phydent.XPM')")
 #derivative = opusrequest("127.0.0.1", 80, "COMMAND_LINE Derivative ([%s], {QSP=13, QOD=1});" % file_path)
-#normalization = opusrequest("127.0.0.1", 80, "COMMAND_LINE  Normalize ([%s], {NME=2, NFX=4000.000000, NLX=400.000000, NWR=1});" % file_path)
+#normalization = opusrSequest("127.0.0.1", 80, "COMMAND_LINE  Normalize ([%s], {NME=2, NFX=4000.000000, NLX=400.000000, NWR=1});" % file_path)
 # print(file_name)
 # print(filenames)
 #opusrequest("127.0.0.1", 80, "SaveAs(0, {SAN='test.0', DAP='C:\\Users\\G164\\Desktop'})")

@@ -410,25 +410,14 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QCheckBox" name="checkBox">
-        <property name="font">
-         <font>
-          <family>Source Sans Pro</family>
-          <pointsize>13</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(34, 34, 34);</string>
-        </property>
+       <widget class="QLabel" name="commentlabel">
         <property name="text">
-         <string>Kommentar</string>
+         <string>Comment:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="commentedit">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -540,7 +529,7 @@
      <x>0</x>
      <y>0</y>
      <width>930</width>
-     <height>21</height>
+     <height>18</height>
     </rect>
    </property>
   </widget>
