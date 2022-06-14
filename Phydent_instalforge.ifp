@@ -1,0 +1,551 @@
+﻿
+[Header]
+ProjectFileVersion = 1.1
+[General]
+Program name = Phydent
+Program version = 1.0
+Windows 2000 = 0
+Windows XP = 0
+Windows Server 2003 = 0
+Windows Vista = 0
+Windows Server 2008 = 0
+Windows 7 = 0
+Windows 8 = 1
+Windows 10 = 1
+Windows Server 2016 = 0
+DoNotCheckOS = 0
+Company name = Phytax
+Website = https://phydent.de/
+SFA = 0
+DFA = 0
+Comp = 1
+[Graphics]
+Wizard image = <main>
+Header image = <main>
+Show Label = 1
+VisualStylesEnabled = 1
+[Files]
+Installation path = <ProgramFiles>\<Company>\<AppName>\
+Autcip = 1
+[Uninstall]
+Vwau = 0
+Website = https://
+Include uninstaller = 1
+Uninstaller filename = Uninstall Phydent
+UseCustomDisplayIcon = 0
+CustomDisplayIcon = <InstallPath>\
+[Licence]
+Licence dialog = 0
+[Finish]
+Sart program = 1
+Reboot computer = 0
+Program = <InstallPath>\Phydent.exe
+ProgramArguments = 
+[Shortcuts]
+Allowtc = 0
+Shortcut path = <Company>\<AppName>\
+[Serialoptions]
+Allows = 0
+Number = 1000
+Mask = #####-#####-#####-#####
+[SplashScreen]
+Image = 
+Sound = 
+Time = 2
+PlaySound = 0
+Allow = 0
+[Build]
+File = C:\Users\G164\Desktop\Installer\Phydent.exe
+SetupIconPath = ..\icons\ancient.ico
+UninstallIconPath = ..\icons\ancient.ico
+CompressionMethod = 0
+CompressionLevel = 2
+[Updater]
+Allow = 0
+1 = <AppName>
+2 = <AppVersion>
+3 = http://
+4 = http://
+5 = http://
+6 = Update
+Language = 0
+RunProg = 
+RunProgs = 0
+Execdlls = 0
+[Languages]
+[Files/Dirs]
+C:\Users\G164\Desktop\Phydent-App\dist\main\_asyncio.pyd
+65.5 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_bz2.pyd
+86 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_cffi_backend.cp39-win_amd64.pyd
+179 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_ctypes.pyd
+125.5 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_decimal.pyd
+265.5 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_elementtree.pyd
+187.5 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_hashlib.pyd
+65 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_lzma.pyd
+161 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_multiprocessing.pyd
+31.5 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_overlapped.pyd
+47 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_pywrap_tensorflow_internal.pyd
+868.2 MB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_queue.pyd
+30.5 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_socket.pyd
+80 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_sqlite3.pyd
+89.5 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_ssl.pyd
+153.5 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_tkinter.pyd
+66 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_uuid.pyd
+25 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\_win32sysloader.pyd
+12 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\base_library.zip
+782.4 KB
+zip
+C:\Users\G164\Desktop\Phydent-App\dist\main\d3dcompiler_47.dll
+4 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\hdf5.dll
+3.2 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\hdf5_hl.dll
+109 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\kiwisolver.cp39-win_amd64.pyd
+115 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\lib_arpack-.IIU2B6T3KOI34W3MTENKWNLKPSDFUH7W.gfortran-win_amd64.dll
+1.6 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\lib_blas_su.YWJ4BAYXCG4KHUZQOFKXEHZCOWE64NEW.gfortran-win_amd64.dll
+146 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\lib_dop-f2p.W23YE54JWB5C645LT3VAOCMXRFBMOXZ5.gfortran-win_amd64.dll
+703.7 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\lib_test_fo.BMG7XNVQO3Y6HRRDJ5ONJJ54IWAYGMM4.gfortran-win_amd64.dll
+574 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libansari.54HGNEJBQIYZX5TZPCQGLNVIPFU6NWEX.gfortran-win_amd64.dll
+130.4 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libbanded5x.65LHFRBVB7ZW3OBPSQSYJGACC6EFUYCM.gfortran-win_amd64.dll
+750.8 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libbispeu.HPSBTY5F6WJ6KJ2NXCAHI76UA2TMTBUN.gfortran-win_amd64.dll
+1.9 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libblkdta00.LKCMLYXNT7A5NSIE4ZS7U6HGVLCOFN7T.gfortran-win_amd64.dll
+739 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libchkder.CIYBJUMHB77HZDWZ7O7OQB7IFLU42V62.gfortran-win_amd64.dll
+302.5 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libcobyla2.RFDNNLTZGQ6OW2QDSG56I46SW3GSJA3J.gfortran-win_amd64.dll
+729.1 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libcrypto-1_1.dll
+3.3 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libd_odr.3YR7NJSDFPJ54CTGDA2T4WBCTO77ZF4Y.gfortran-win_amd64.dll
+1.3 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libdcsrch.TWU2WQ2D2VRC5ZBASJTN75WEVOQEH4AA.gfortran-win_amd64.dll
+81.6 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libdet.JKB7FBINE7EQP47JKBKAZVX7D7BDK67N.gfortran-win_amd64.dll
+87.9 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libdfft.4FCTPXO6JG3KE2DOGSEBQJ5LTHXJD6WY.gfortran-win_amd64.dll
+1.7 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libdfitpack.CJRYIVOD4FGA5M4CI4OXI4JDEEUOILKW.gfortran-win_amd64.dll
+1.9 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libdgamln.R4DABH4FPNJGAKV4UEQTD3QHJUAD4255.gfortran-win_amd64.dll
+2.6 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libdqag.M222JDF3QJ6G53N3IWUMNA7KTGE4U2PF.gfortran-win_amd64.dll
+876.7 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libEGL.dll
+24.5 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libffi-7.dll
+32 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libgetbreak.52YM2BKNWEKTINTKM7U5447ONDWO6FAV.gfortran-win_amd64.dll
+363.5 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libGLESv2.dll
+3.2 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\liblbfgsb.DJ3ZZAD5DLVNRVRUCH32LSFKUJWSKQOI.gfortran-win_amd64.dll
+790.9 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\liblsoda-f2.BXSNC3MJYI5GKUETHUJUDAOCN7L2OXA6.gfortran-win_amd64.dll
+740.5 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libmvndst.47HLFPFBW7DZEYQRAPZVHSZHKIQDL4BZ.gfortran-win_amd64.dll
+160.4 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libnnls.O7YW55GFEWHHLJHC7HW56M4N2SDMEE6J.gfortran-win_amd64.dll
+593.5 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libopenblas.XWYDX2IKJW2NMTWSFYNGFUWKQU3LYTCZ.gfortran-win_amd64.dll
+32.9 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libslsqp_op.RZ4TV2HJX5AEA5VT2ZSATTL3ELYSVEN7.gfortran-win_amd64.dll
+244.8 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libsodium-138090d4.dll
+296.5 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libspecfun.PSHBVSPF6FGISR7SJAEMBPSCFNGLE22A.gfortran-win_amd64.dll
+1.4 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libssl-1_1.dll
+682.4 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libvode-f2p.A4RM4ZLWJM6IREDXQD5PND4T2ZY7V6CN.gfortran-win_amd64.dll
+972.6 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libwrap_dum.LNUFSDUU4I7J72CN2DGW6GU3CNXPZTKX.gfortran-win_amd64.dll
+65 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libwrap_dum.RKKEB4IUDX7FIREVJJZ3AUK3RZIRVAOW.gfortran-win_amd64.dll
+162.9 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\libzmq-v142-mt-4_3_4-4e355e3e.dll
+484.5 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\mfc140u.dll
+5.8 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\msvcp140.dll
+552.4 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\MSVCP140_1.dll
+31 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\opengl32sw.dll
+20 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\Phydent.exe
+25.6 MB
+exe
+C:\Users\G164\Desktop\Phydent-App\dist\main\PhydentLogo.ico
+37.7 KB
+ico
+C:\Users\G164\Desktop\Phydent-App\dist\main\pvectorc.cp39-win_amd64.pyd
+29.5 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\pyexpat.pyd
+202 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\python3.dll
+60 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\python39.dll
+4.3 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\pythoncom39.dll
+543.5 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\pywintypes39.dll
+139 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\Qt5Core.dll
+5.7 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\Qt5DBus.dll
+426.5 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\Qt5Gui.dll
+6.7 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\Qt5Network.dll
+1.3 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\Qt5Qml.dll
+3.4 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\Qt5QmlModels.dll
+428.5 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\Qt5Quick.dll
+4 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\Qt5Svg.dll
+323 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\Qt5Test.dll
+239.5 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\Qt5WebSockets.dll
+146 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\Qt5Widgets.dll
+5.2 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\select.pyd
+30 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\sqlite3.dll
+1.5 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\tcl86t.dll
+1.8 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\tk86t.dll
+1.5 MB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\unicodedata.pyd
+1.1 MB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\VCOMP140.DLL
+173.4 KB
+DLL
+C:\Users\G164\Desktop\Phydent-App\dist\main\VCRUNTIME140.dll
+95.9 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\VCRUNTIME140_1.dll
+36.4 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\win32api.pyd
+131.5 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\win32clipboard.pyd
+25.5 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\win32evtlog.pyd
+73 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\win32pdh.pyd
+33.5 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\win32security.pyd
+139 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\win32trace.pyd
+22 KB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\win32ui.pyd
+1.4 MB
+pyd
+C:\Users\G164\Desktop\Phydent-App\dist\main\zlib.dll
+84 KB
+dll
+C:\Users\G164\Desktop\Phydent-App\dist\main\altgraph-0.17.2.dist-info\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\analysis_report\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\app_resources\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\black\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\certifi\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\cffi-1.15.0.dist-info\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\gevent\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\gevent-21.8.0.dist-info\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\google\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\greenlet\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\greenlet-1.1.2.dist-info\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\grpc\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\h5py\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\Icons\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\importlib_metadata-4.10.0.dist-info\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\IPython\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\jedi\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\jsonschema\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\jsonschema-4.4.0.dist-info\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\lib2to3\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\markupsafe\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\matplotlib\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\nbformat\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\numpy\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\pandas\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\parso\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\phydent_models\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\PIL\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\pycparser-2.21.dist-info\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\pyinstaller-5.1.dist-info\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\PyQt5\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\pyqtgraph\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\pytz\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\pyzmq.libs\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\scipy\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\setuptools-58.1.0.dist-info\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\simplejson\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\sklearn\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\spectra_csv\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\tcl\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\tcl8\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\tensorflow\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\tk\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\tornado\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\wcwidth\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\wheel-0.37.1.dist-info\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\win32com\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\wrapt\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\XPM\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\zmq\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\zope\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\zope.event-4.5.0.dist-info\
+N/A
+[Folder]
+C:\Users\G164\Desktop\Phydent-App\dist\main\zope.interface-5.4.0.dist-info\
+N/A
+[Folder]
+[Licence_Begin]
+118
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+\viewkind4\uc1\pard\cf0\fs20\par
+}
+ [Licence_End]
+[Registry]
+[Variables]
+[SCs]
+Startmenu
+Phydent
+<InstallPath>\Phydent.exe
+
+
+0
+Desktop
+Phydent
+<InstallPath>\Phydent.exe
+
+
+0
+[IFP_End]
+[Serials]
+[Serials_End]
+[Commands]
