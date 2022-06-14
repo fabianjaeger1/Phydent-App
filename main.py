@@ -44,6 +44,7 @@ import pyqtgraph as pg
 from pyqtgraph import PlotWidget , plot
 
 from PyQt5.QtWidgets import QDialog, QMainWindow
+from PyQt5 import QtGui
 
 #from PyQt5 import QtCore, QtGui, QtWidgets
 #from measurementUI import Ui_MainWindow
@@ -62,7 +63,30 @@ import loginUI
 import OPUS
 from OPUS import opusrequest
 
+from win32 import win32gui
+
 # import OPUS_communication
+
+'''Define path relative to the project folder'''
+basedir = os.path.dirname(__file__)
+
+
+'''Such that the icon is also on the taskbar of the application'''
+from ctypes import windll
+
+try:
+    myappid = 'com.phytax.phydent'
+    windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid) 
+except ImportError: 
+	pass
+
+# try: 
+# 	from ctypes import windll # Only exists on Windows. 
+# 	#myappid = u'com.phydent'
+#     myappid = 'mycompany.myproduct.subproduct.version'
+# 	windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid) 
+# except ImportError: 
+# 	pass
 
 class GlobalStandardScaler(object):
     """Scales to unit standard deviation and mean centering using global mean and std of X, sklearn like API"""
@@ -307,8 +331,15 @@ class login(QMainWindow, loginUI.Ui_login):
         self.passinput.setEchoMode(QLineEdit.Password)
         self.loginbutton.clicked.connect(self.login)
         self.exitbutton.clicked.connect(self.exit_app)
+        path_phydent_logo_text = QPixmap(os.path.join(basedir, "Icons", "phydent-logo-2x.png"))
+        pixmap = QPixmap(path_phydent_logo_text).scaled(self.LogoImage.size(), Qt.KeepAspectRatio)
+        self.LogoImage.setPixmap(pixmap)
+        #self.LogoImage.setPixmap(pixmap)
         self.mainapplication = mainwindow()
+        pixmap = QPixmap(path_phydent_logo_text).scaled(self.mainapplication.Logo.size(), Qt.KeepAspectRatio)
+        #self.LogoImage.setPixmap(pixmap)
 
+        self.mainapplication.Logo.setPixmap(pixmap)
         
         #self.mainapplication.backgroundbutton.clicked.connect(self.background_measurement_start)
         #self.popups = []
@@ -330,6 +361,8 @@ class login(QMainWindow, loginUI.Ui_login):
         #time.sleep(3)
 
         self.mainapplication.show()
+        '''Fix in case the window moves outside of the screen due to connecting via remote and changing the resolution'''
+        #self.mainapplication.move(100, 100)
         #self.popups.append(popwindow)
         w.close()
     
@@ -587,6 +620,9 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         self.backgroundbutton.clicked.connect(self.background_measurement_start)
         
         self.aboutwindow = about()
+        pixmap = QPixmap(os.path.join(basedir, "Icons", "phydent-logo-2x.png"))
+        #self.LogoImage.setPixmap(pixmap)
+        self.aboutwindow.label.setPixmap(pixmap)
         #self.loginwindow = login()
 
         self.startmeasurementbutton.clicked.connect(self.measurementstart)
@@ -1154,9 +1190,10 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         productlabel3 = self.productlabel3edit.text()
         productlabel4 = self.productlabel4edit.text()
         productlabel5 = self.productlabel5edit.text()
+        productlabel_array = [productlabel1, productlabel2, productlabel3, productlabel4, productlabel5]
         text_start_prompt = "[{}]: Messung gestartet".format(self.gettime())
 
-        self.worker = OPUS.OPUS_measurement()
+        self.worker = OPUS.OPUS_measurement(productlabel_array)
 
         self.worker.target_path = path
 
@@ -1164,6 +1201,12 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
 
         self.measurementwindow.backbutton.clicked.connect(self.go_back)
         self.measurementwindow.printbutton.clicked.connect(self.create_report)
+
+        '''Add Phydent logo'''
+        pixmap = QPixmap(os.path.join(basedir, "Icons", "phydent-logo-2x.png"))
+        #self.LogoImage.setPixmap(pixmap)
+        self.measurementwindow.Logo.setPixmap(pixmap)
+        self.aboutwindow.label.setPixmap(pixmap)
         #new class
         #self.measurementwindow = measurement(productlabel1, productlabel2, productlabel3)
 
@@ -1349,16 +1392,18 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
         '''Display red or green image'''
         if predicted_class[1] > 95:
             print("Prediction was positive")
-            path_identification_image = '{}/Icons/positive.png'.format(currentwd)
-            pixmap = QPixmap(path_identification_image)
+            path_identification_image = os.path.join(basedir, "Icons", 'positive.png')
+            #path_identification_image = '{}/Icons/positive.png'.format(currentwd)
+            pixmap = QPixmap(path_identification_image).scaled(self.measurementwindow.identification_image.size(), Qt.KeepAspectRatio)
             print(pixmap)
             self.measurementwindow.identification_image.setPixmap(pixmap)
             self.update()
             self.measurementwindow.update()
         else:
             print("Prediction was negative")
-            path_identification_image = '{}/Icons/negative.png'.format(currentwd)
-            pixmap = QPixmap(path_identification_image)
+            path_identification_image = os.path.join(basedir, "Icons", "negative.png")
+            #path_identification_image = '{}/Icons/negative.png'.format(currentwd)
+            pixmap = QPixmap(path_identification_image).scaled(self.measurementwindow.identification_image.size(), Qt.KeepAspectRatio)
             print(pixmap)
             self.measurementwindow.identification_image.setPixmap(pixmap)
             self.update()
@@ -1460,6 +1505,7 @@ class mainwindow(QMainWindow, mainwindowUI.Ui_Messungen):
 if __name__ == "__main__":
     import sys
     app = QApplication(sys.argv)
+    app.setWindowIcon(QtGui.QIcon(os.path.join(basedir, "Icons", 'PhydentLogo.ico')))
     #app.setStyle('Fusion')
     w = login()
     w.show()

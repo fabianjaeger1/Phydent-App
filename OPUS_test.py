@@ -10,6 +10,7 @@ import sys
 '''Serves as testing ground for the OPUS functions'''
 
 
+
 def opusrequest(IP,port,command):
     # print(socket.gethostbyname(socket.gethostname()))
         command=command.replace(" ", "%20")
@@ -33,6 +34,10 @@ def opusrequest(IP,port,command):
         #Close connection and provide answer as string    
         s.close()
         return(data.split("\n\r\n"))
+
+
+save = opusrequest("127.0.0.1", 80, "SaveAs([C:\\Users\\G164\\Desktop\\Phydent-App\\spectra_measurement\\20220604-180359.0], {DAP = 'C:\\Users\\G164\\Desktop', OEX = '0', SAN = filetest.0, COF = 2, DPA = 4, DPO = 10, SEP = '', ADP = '1', X64 = '1'})")
+print(save)
 
 
 def opus_metadata():
@@ -78,7 +83,7 @@ def opus_metadata():
 
     
     
-opus_metadata()
+#opus_metadata()
 
 
 # cwdir = os.getcwd()
@@ -147,6 +152,7 @@ def test():
     compatible= opusrequest("127.0.0.1", 80,"COMMAND_LINE MakeCompatible ([%s], [%s], {});" % (pfad_leermessung_spektrum, file_path))
     print(compatible)
 
+#test()
 
 
 def measuring():

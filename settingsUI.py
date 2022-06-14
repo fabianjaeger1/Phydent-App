@@ -14,14 +14,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Einstellungen(object):
     def setupUi(self, Einstellungen):
         Einstellungen.setObjectName("Einstellungen")
-        Einstellungen.resize(933, 735)
+        Einstellungen.resize(933, 762)
         font = QtGui.QFont()
         font.setFamily("Source Sans Pro")
         font.setPointSize(12)
         Einstellungen.setFont(font)
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("PhydentLogo.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        Einstellungen.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(Einstellungen)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
